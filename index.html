@@ -1,80 +1,61 @@
 
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portafolio | Daniel Hernández Rubio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
     body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body class="bg-gray-900 text-gray-100 transition-colors duration-500" id="body">
-  <div class="absolute top-4 right-4">
-    <button onclick="toggleTheme()" class="bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700 transition">
-      🌗 Modo Claro/Oscuro
-    </button>
-  </div>
+<body class="bg-gray-900 text-gray-100">
 
   <!-- Hero -->
   <section class="min-h-screen flex flex-col justify-center items-center text-center px-6" data-aos="fade-up">
     <img src="assets/profile.jpg" alt="Daniel Hernández Rubio" class="w-40 h-40 rounded-full border-4 border-purple-600 shadow-lg mb-6">
     <h1 class="text-4xl md:text-5xl font-extrabold mb-2 text-purple-400">Daniel Hernández Rubio</h1>
-    <p class="text-xl text-gray-300 max-w-xl mb-6">Desarrollador de software | Fullstack Junior | Apasionado por soluciones sostenibles</p>
+    <p class="text-xl text-gray-300 max-w-xl mb-6">Desarrollador Fullstack Junior con pasión por el código limpio, la eficiencia y la sostenibilidad.</p>
     <div class="space-x-4">
-      <a href="https://www.linkedin.com/in/danielhr3" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio-2351871b1/" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg">LinkedIn</a>
       <a href="assets/CV-DanielHernandezRubio.pdf" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-lg">Descargar CV</a>
     </div>
   </section>
 
   <!-- Tecnologías -->
-  <section class="py-20 bg-gray-800" data-aos="fade-right">
-    <h2 class="text-3xl font-bold text-center text-purple-300 mb-12">Tecnologías</h2>
+  <section class="py-20 bg-gray-800" data-aos="fade-up">
+    <h2 class="text-3xl font-bold text-center text-purple-300 mb-12">Tecnologías que domino</h2>
     <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center">
-      <div class="flex items-center space-x-3 justify-center"><img src="assets/icons/angular.svg" class="w-6 h-6"><span class="text-white text-lg">Angular</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/typescript.svg" class="w-6 h-6"><span class="text-white text-lg">Typescript</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/tailwind.svg" class="w-6 h-6"><span class="text-white text-lg">Tailwind</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/scss.svg" class="w-6 h-6"><span class="text-white text-lg">Scss</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/nestjs.svg" class="w-6 h-6"><span class="text-white text-lg">Nestjs</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/python.svg" class="w-6 h-6"><span class="text-white text-lg">Python</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/mysql.svg" class="w-6 h-6"><span class="text-white text-lg">Mysql</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/git.svg" class="w-6 h-6"><span class="text-white text-lg">Git</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/postman.svg" class="w-6 h-6"><span class="text-white text-lg">Postman</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/docker.svg" class="w-6 h-6"><span class="text-white text-lg">Docker</span></div>
+      <div class="flex flex-col items-center"><img src="assets/icons/angular.svg" class="w-10 h-10 mb-2"><span class="text-white">Angular</span></div><div class="flex flex-col items-center"><img src="assets/icons/typescript.svg" class="w-10 h-10 mb-2"><span class="text-white">Typescript</span></div><div class="flex flex-col items-center"><img src="assets/icons/tailwind.svg" class="w-10 h-10 mb-2"><span class="text-white">Tailwind</span></div><div class="flex flex-col items-center"><img src="assets/icons/scss.svg" class="w-10 h-10 mb-2"><span class="text-white">Scss</span></div><div class="flex flex-col items-center"><img src="assets/icons/nestjs.svg" class="w-10 h-10 mb-2"><span class="text-white">Nestjs</span></div><div class="flex flex-col items-center"><img src="assets/icons/python.svg" class="w-10 h-10 mb-2"><span class="text-white">Python</span></div><div class="flex flex-col items-center"><img src="assets/icons/mysql.svg" class="w-10 h-10 mb-2"><span class="text-white">Mysql</span></div><div class="flex flex-col items-center"><img src="assets/icons/git.svg" class="w-10 h-10 mb-2"><span class="text-white">Git</span></div><div class="flex flex-col items-center"><img src="assets/icons/postman.svg" class="w-10 h-10 mb-2"><span class="text-white">Postman</span></div><div class="flex flex-col items-center"><img src="assets/icons/docker.svg" class="w-10 h-10 mb-2"><span class="text-white">Docker</span></div>
     </div>
   </section>
 
   <!-- Proyectos -->
-  <section class="py-20 px-6" data-aos="fade-up">
-    <h2 class="text-3xl font-bold text-center text-purple-300 mb-12">Proyectos</h2>
+  <section class="py-20 px-6" data-aos="fade-up" data-aos-delay="200">
+    <h2 class="text-3xl font-bold text-center text-purple-300 mb-12">Proyectos personales</h2>
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-      <div class="bg-gray-800 rounded-lg shadow-md p-6">
+      <div class="bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition">
         <h3 class="text-xl font-semibold text-purple-400">EcoConnect</h3>
-        <p class="text-gray-300 mt-2 mb-4">Plataforma para análisis de sostenibilidad con generación automática de reportes usando IA (OpenAI).</p>
+        <p class="text-gray-300 mt-2 mb-4">App web que genera reportes automáticos de impacto sostenible usando IA, ayudando a PYMES a comunicar su compromiso ecológico.</p>
         <p class="text-sm text-gray-400 mb-2">Angular | NestJS | MySQL | OpenAI API</p>
-        <a href="https://github.com/DanielHR3/ecoconnect-frontend" class="text-purple-400 hover:underline text-sm">Ver en GitHub</a>
+        <a href="https://github.com/DanielHR3/ecoconnect-frontend" class="text-purple-400 hover:underline text-sm">Ver repositorio</a>
       </div>
-      <div class="bg-gray-800 rounded-lg shadow-md p-6">
-        <h3 class="text-xl font-semibold text-purple-400">Facturación IntegraMed</h3>
-        <p class="text-gray-300 mt-2 mb-4">Sistema de consulta y actualización de precios entre Salesforce y SAP vía APIs y formularios Angular.</p>
-        <p class="text-sm text-gray-400 mb-2">Angular | PHP | MySQL | Postman</p>
+      <div class="bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-xl transition">
+        <h3 class="text-xl font-semibold text-purple-400">Veterinaria Desktop App</h3>
+        <p class="text-gray-300 mt-2 mb-4">Aplicación para gestión de pacientes, recetas, citas e inventario en clínicas veterinarias. Incluye backups y reportes en PDF.</p>
+        <p class="text-sm text-gray-400 mb-2">Python | SQLite | FPDF</p>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="py-6 bg-gray-800 text-center text-sm text-gray-500">
     © 2025 Daniel Hernández Rubio — Portafolio Personal
   </footer>
 
-  <script>
-    AOS.init();
-
-    function toggleTheme() {
-      const body = document.getElementById('body');
-      if (body.classList.contains('bg-gray-900')) {
-        body.classList.remove('bg-gray-900', 'text-gray-100');
-        body.classList.add('bg-white', 'text-gray-800');
-      } else {
-        body.classList.add('bg-gray-900', 'text-gray-100');
-        body.classList.remove('bg-white', 'text-gray-800');
-      }
-    }
-  </script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
 </body>
 </html>
