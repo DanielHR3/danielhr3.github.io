@@ -6,67 +6,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portafolio | Daniel Hernández Rubio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans">
-  <header class="bg-white shadow-md sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Daniel Hernández Rubio</h1>
-      <nav class="space-x-4">
-        <a href="#about" class="hover:text-purple-600">Sobre mí</a>
-        <a href="#technologies" class="hover:text-purple-600">Tecnologías</a>
-        <a href="#projects" class="hover:text-purple-600">Proyectos</a>
-        <a href="#experience" class="hover:text-purple-600">Experiencia</a>
-        <a href="#certifications" class="hover:text-purple-600">Certificaciones</a>
-        <a href="#contact" class="hover:text-purple-600">Contacto</a>
-      </nav>
-    </div>
-  </header>
+<body class="bg-gray-900 text-gray-100">
 
-  <section id="about" class="py-16 px-4 max-w-4xl mx-auto text-center">
-    <img src="assets/profile.jpg" alt="Daniel Hernández Rubio" class="mx-auto w-40 h-40 rounded-full mb-4 shadow-lg border-4 border-purple-200">
-    <h2 class="text-3xl font-bold mb-4">Sobre mí</h2>
-    <p class="text-lg">Soy desarrollador de software con experiencia en frontend y backend. Me especializo en crear soluciones eficientes, sostenibles y centradas en el usuario. Trabajo actualmente como Desarrollador Jr en IntegraMed y me apasiona aprender e innovar con nuevas tecnologías.</p>
+  <!-- Hero -->
+  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+    <img src="assets/profile.jpg" alt="Daniel Hernández Rubio" class="w-40 h-40 rounded-full border-4 border-purple-600 shadow-lg mb-6">
+    <h1 class="text-4xl md:text-5xl font-extrabold mb-2 text-purple-400">Daniel Hernández Rubio</h1>
+    <p class="text-xl text-gray-300 max-w-xl mb-6">Desarrollador de software | Fullstack Junior | Apasionado por soluciones sostenibles</p>
+    <div class="space-x-4">
+      <a href="https://www.linkedin.com/in/danielhr3" target="_blank" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg">LinkedIn</a>
+      <a href="assets/CV-DanielHernandezRubio.pdf" target="_blank" class="bg-gray-700 hover:bg-gray-600 text-white px-5 py-2 rounded-lg">Descargar CV</a>
+    </div>
   </section>
 
-  <section id="technologies" class="py-16 px-4 bg-gray-100">
-    <h2 class="text-3xl font-bold mb-4 text-center">Tecnologías</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
-      <span>Angular</span><span>TypeScript</span><span>Tailwind CSS</span><span>SCSS</span>
+  <!-- Tecnologías -->
+  <section class="py-20 bg-gray-800">
+    <h2 class="text-3xl font-bold text-center text-purple-300 mb-12">Tecnologías</h2>
+    <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center text-lg text-white">
+      <span>Angular</span><span>TypeScript</span><span>Tailwind</span><span>SCSS</span>
       <span>PHP</span><span>NestJS</span><span>Node.js</span><span>Python</span>
       <span>MySQL</span><span>Git</span><span>Postman</span><span>Docker</span>
     </div>
   </section>
 
-  <section id="projects" class="py-16 px-4 max-w-6xl mx-auto">
-    <h2 class="text-3xl font-bold mb-8 text-center">Proyectos</h2>
-    <p class="text-center">[Aquí puedes agregar tus tarjetas de proyectos con capturas o enlaces]</p>
-  </section>
-
-  <section id="experience" class="py-16 px-4 bg-gray-100">
-    <h2 class="text-3xl font-bold mb-4 text-center">Experiencia</h2>
-    <ul class="list-disc pl-6">
-      <li><strong>IntegraMed</strong> – Desarrollador Jr (2024 - actual)</li>
-      <li><strong>Instituto Cedrus</strong> – Entrenador de fútbol americano (2019)</li>
-    </ul>
-  </section>
-
-  <section id="certifications" class="py-16 px-4">
-    <h2 class="text-3xl font-bold mb-4 text-center">Certificaciones</h2>
-    <ul class="list-disc pl-6">
-      <li>Curso Ultimate Docker – 7 de septiembre de 2024</li>
-    </ul>
-  </section>
-
-  <section id="contact" class="py-16 px-4 bg-gray-100">
-    <h2 class="text-3xl font-bold mb-4 text-center">Contacto</h2>
-    <div class="text-center">
-      <p>Email: <a href="mailto:danielhrubio3@gmail.com" class="text-purple-600">danielhrubio3@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/DanielHR3" target="_blank" class="text-purple-600">DanielHR3</a></p>
+  <!-- Proyectos -->
+  <section class="py-20 px-6">
+    <h2 class="text-3xl font-bold text-center text-purple-300 mb-12">Proyectos</h2>
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+      <div class="bg-gray-800 rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-semibold text-purple-400">EcoConnect</h3>
+        <p class="text-gray-300 mt-2 mb-4">Plataforma para análisis de sostenibilidad con generación automática de reportes usando IA (OpenAI).</p>
+        <p class="text-sm text-gray-400 mb-2">Angular | NestJS | MySQL | OpenAI API</p>
+        <a href="https://github.com/DanielHR3/ecoconnect-frontend" class="text-purple-400 hover:underline text-sm">Ver en GitHub</a>
+      </div>
+      <div class="bg-gray-800 rounded-lg shadow-md p-6">
+        <h3 class="text-xl font-semibold text-purple-400">Facturación IntegraMed</h3>
+        <p class="text-gray-300 mt-2 mb-4">Sistema de consulta y actualización de precios entre Salesforce y SAP vía APIs y formularios Angular.</p>
+        <p class="text-sm text-gray-400 mb-2">Angular | PHP | MySQL | Postman</p>
+      </div>
     </div>
   </section>
 
-  <footer class="bg-white text-center py-4 text-sm text-gray-600">
-    © 2025 Daniel Hernández Rubio | Portafolio Personal
+  <!-- Footer -->
+  <footer class="py-6 bg-gray-800 text-center text-sm text-gray-500">
+    © 2025 Daniel Hernández Rubio — Portafolio Personal
   </footer>
+
 </body>
 </html>
