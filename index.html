@@ -1,20 +1,27 @@
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portafolio | Daniel Hernández Rubio</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
     body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
-<body class="bg-gray-900 text-gray-100">
+<body class="bg-gray-900 text-gray-100 transition-colors duration-500" id="body">
+  <div class="absolute top-4 right-4">
+    <button onclick="toggleTheme()" class="bg-purple-600 text-white px-4 py-2 rounded shadow hover:bg-purple-700 transition">
+      🌗 Modo Claro/Oscuro
+    </button>
+  </div>
 
   <!-- Hero -->
-  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6">
+  <section class="min-h-screen flex flex-col justify-center items-center text-center px-6" data-aos="fade-up">
     <img src="assets/profile.jpg" alt="Daniel Hernández Rubio" class="w-40 h-40 rounded-full border-4 border-purple-600 shadow-lg mb-6">
     <h1 class="text-4xl md:text-5xl font-extrabold mb-2 text-purple-400">Daniel Hernández Rubio</h1>
     <p class="text-xl text-gray-300 max-w-xl mb-6">Desarrollador de software | Fullstack Junior | Apasionado por soluciones sostenibles</p>
@@ -25,17 +32,15 @@
   </section>
 
   <!-- Tecnologías -->
-  <section class="py-20 bg-gray-800">
+  <section class="py-20 bg-gray-800" data-aos="fade-right">
     <h2 class="text-3xl font-bold text-center text-purple-300 mb-12">Tecnologías</h2>
-    <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center text-lg text-white">
-      <span>Angular</span><span>TypeScript</span><span>Tailwind</span><span>SCSS</span>
-      <span>PHP</span><span>NestJS</span><span>Node.js</span><span>Python</span>
-      <span>MySQL</span><span>Git</span><span>Postman</span><span>Docker</span>
+    <div class="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 text-center">
+      <div class="flex items-center space-x-3 justify-center"><img src="assets/icons/angular.svg" class="w-6 h-6"><span class="text-white text-lg">Angular</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/typescript.svg" class="w-6 h-6"><span class="text-white text-lg">Typescript</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/tailwind.svg" class="w-6 h-6"><span class="text-white text-lg">Tailwind</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/scss.svg" class="w-6 h-6"><span class="text-white text-lg">Scss</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/nestjs.svg" class="w-6 h-6"><span class="text-white text-lg">Nestjs</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/python.svg" class="w-6 h-6"><span class="text-white text-lg">Python</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/mysql.svg" class="w-6 h-6"><span class="text-white text-lg">Mysql</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/git.svg" class="w-6 h-6"><span class="text-white text-lg">Git</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/postman.svg" class="w-6 h-6"><span class="text-white text-lg">Postman</span></div><div class="flex items-center space-x-3 justify-center"><img src="assets/icons/docker.svg" class="w-6 h-6"><span class="text-white text-lg">Docker</span></div>
     </div>
   </section>
 
   <!-- Proyectos -->
-  <section class="py-20 px-6">
+  <section class="py-20 px-6" data-aos="fade-up">
     <h2 class="text-3xl font-bold text-center text-purple-300 mb-12">Proyectos</h2>
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
       <div class="bg-gray-800 rounded-lg shadow-md p-6">
@@ -57,5 +62,19 @@
     © 2025 Daniel Hernández Rubio — Portafolio Personal
   </footer>
 
+  <script>
+    AOS.init();
+
+    function toggleTheme() {
+      const body = document.getElementById('body');
+      if (body.classList.contains('bg-gray-900')) {
+        body.classList.remove('bg-gray-900', 'text-gray-100');
+        body.classList.add('bg-white', 'text-gray-800');
+      } else {
+        body.classList.add('bg-gray-900', 'text-gray-100');
+        body.classList.remove('bg-white', 'text-gray-800');
+      }
+    }
+  </script>
 </body>
 </html>
