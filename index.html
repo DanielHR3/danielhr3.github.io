@@ -286,10 +286,36 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.75rem;
+      padding: 0;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card-preview {
+      width: 100%;
+      height: 160px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .card-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      filter: brightness(0.9);
+    }
+    .card:hover .card-preview img {
+      transform: scale(1.08);
+      filter: brightness(1.1);
+    }
+    .card-body {
+      padding: 1.5rem;
+      position: relative;
+      z-index: 1;
+      flex-grow: 1;
     }
     .card::before {
       content: '';
@@ -370,14 +396,16 @@
       align-items: center;
     }
     .card-featured-preview {
-      width: 200px;
-      height: 130px;
+      width: 260px;
+      height: 160px;
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid var(--border);
       flex-shrink: 0;
+      position: relative;
     }
-    .card-featured-preview img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); }
+    .card-featured-preview img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); transition: all 0.5s ease; }
+    .card-featured:hover .card-featured-preview img { transform: scale(1.05); filter: brightness(1); }
 
     /* ─── EXPERIENCE TIMELINE ─── */
     .timeline { display: flex; flex-direction: column; gap: 2rem; }
@@ -610,12 +638,11 @@
                 <span class="stack-tag">Vite</span>
                 <span class="stack-tag">Tailwind CSS 4</span>
                 <span class="stack-tag">Framer Motion</span>
-                <span class="stack-tag">React Router</span>
               </div>
               <a href="https://github.com/DanielHR3/aura-landing-page" target="_blank" class="card-link">Ver repositorio</a>
             </div>
             <div class="card-featured-preview">
-              <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=400" alt="Preview de Aura Landing Page">
+              <img src="assets/previews/aura.png" alt="Preview de Aura Landing Page">
             </div>
           </div>
         </div>
@@ -623,7 +650,10 @@
 
       <!-- EcoConnect -->
       <div class="card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-content">
+        <div class="card-preview">
+          <img src="assets/previews/ecoconnect.png" alt="Preview de EcoConnect">
+        </div>
+        <div class="card-body">
           <span class="card-badge">App Web</span>
           <h3 class="card-title">EcoConnect</h3>
           <p class="card-desc">App que genera reportes automáticos de impacto sostenible usando IA, ayudando a PYMES a comunicar su compromiso ecológico.</p>
@@ -639,7 +669,10 @@
 
       <!-- VetSys -->
       <div class="card" data-aos="fade-up" data-aos-delay="150">
-        <div class="card-content">
+        <div class="card-preview">
+          <img src="assets/previews/vetsys.png" alt="Preview de VetSys">
+        </div>
+        <div class="card-body">
           <span class="card-badge">Desktop App</span>
           <h3 class="card-title">VetSys — Clínica Veterinaria</h3>
           <p class="card-desc">Aplicación de escritorio para gestión de pacientes, recetas, citas e inventario. Incluye backups automáticos y exportación de reportes en PDF.</p>
@@ -647,6 +680,7 @@
             <span class="stack-tag">Python</span>
             <span class="stack-tag">SQLite</span>
             <span class="stack-tag">FPDF</span>
+            <span class="stack-tag">customTkinter</span>
           </div>
           <a href="https://github.com/DanielHR3/vetsys" target="_blank" class="card-link">Ver repositorio</a>
         </div>
@@ -654,14 +688,17 @@
 
       <!-- Luna y Sol -->
       <div class="card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-content">
-          <span class="card-badge">UI Design</span>
-          <h3 class="card-title">Luna y Sol</h3>
-          <p class="card-desc">Diseño web creativo con enfoque minimalista y animaciones suaves para mostrar dominio de layouts y CSS avanzado.</p>
+        <div class="card-preview">
+          <img src="assets/previews/tequila.png" alt="Preview de Tequila Landing">
+        </div>
+        <div class="card-body">
+          <span class="card-badge">Premium Brand Site</span>
+          <h3 class="card-title">Tequila Livergood</h3>
+          <p class="card-desc">Modernización de una marca de tequila tradicional hacia una experiencia de lujo con diseño responsivo y seguridad avanzada.</p>
           <div class="card-stack">
-            <span class="stack-tag">HTML</span>
-            <span class="stack-tag">CSS</span>
-            <span class="stack-tag">Animaciones</span>
+            <span class="stack-tag">HTML5</span>
+            <span class="stack-tag">CSS3 Premium</span>
+            <span class="stack-tag">PHP Secure</span>
           </div>
           <a href="https://github.com/DanielHR3/luna-y-sol" target="_blank" class="card-link">Ver repositorio</a>
         </div>
@@ -685,7 +722,10 @@
 
       <!-- Aura Intelligence -->
       <div class="card" data-aos="fade-up" data-aos-delay="150">
-        <div class="card-content">
+        <div class="card-preview">
+          <img src="assets/previews/aura.png" alt="Preview de Aura Intelligence">
+        </div>
+        <div class="card-body">
           <span class="card-badge">AI Assistant Framework</span>
           <h3 class="card-title">Aura Intelligence</h3>
           <p class="card-desc">Asistente virtual avanzado en Angular integrado con IA para tareas de ortografía, asistencia y procesamiento inteligente con una interfaz premium.</p>
