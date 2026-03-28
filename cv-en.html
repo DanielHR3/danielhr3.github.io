@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV — Daniel Hernández Rubio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0a0a0a;
+            --accent: #6B8E23;
+            --accent-muted: rgba(107,142,35,0.1);
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
+            --border: #eeeeee;
+            --bg-print: #ffffff;
+            --sidebar-bg: #f9f9f9;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--text-main);
+            background-color: #f0f0f0;
+            line-height: 1.5;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .no-print-nav {
+            background: #0a0a0a;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .btn-action {
+            padding: 0.6rem 1.2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-action:hover { opacity: 0.9; }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .cv-page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 2rem auto;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .sidebar {
+            background: var(--sidebar-bg);
+            padding: 2.5rem 1.5rem;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .profile-pic {
+            width: 130px;
+            height: 130px;
+            border-radius: 12px;
+            background: #ddd;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .profile-pic img { width: 100%; height: 100%; object-fit: cover; }
+
+        .sidebar-section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--accent-muted);
+            padding-bottom: 0.3rem;
+        }
+
+        .contact-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+        .contact-item { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.6rem; }
+        .contact-item a { color: inherit; text-decoration: none; word-break: break-all; }
+
+        .skills-group { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .skill-tag {
+            font-size: 0.75rem;
+            background: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .cert-item { margin-bottom: 0.8rem; }
+        .cert-title { font-size: 0.8rem; font-weight: 600; color: var(--text-main); line-height: 1.2; }
+        .cert-meta { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+        .main-content {
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .header { margin-bottom: 1rem; }
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .summary { font-size: 0.95rem; color: var(--text-muted); text-align: justify; }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .experience-item, .project-item { margin-bottom: 1.8rem; }
+        .exp-header, .proj-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }
+        .exp-role, .proj-name { font-weight: 700; font-size: 1rem; }
+        .exp-company, .proj-stack { font-weight: 500; color: var(--accent); font-size: 0.85rem; }
+        .exp-date { font-size: 0.8rem; color: var(--text-muted); }
+        .exp-desc, .proj-desc { font-size: 0.88rem; color: var(--text-muted); list-style-position: inside; }
+        .exp-desc li { margin-bottom: 0.3rem; }
+
+        .education-item { margin-bottom: 1rem; }
+        .edu-school { font-weight: 700; font-size: 0.95rem; }
+        .edu-degree { font-size: 0.85rem; color: var(--text-muted); }
+        .edu-date { font-size: 0.8rem; color: var(--accent); }
+
+        @media print {
+            @page { margin: 0; size: A4; }
+            body { background: white; margin: 0; }
+            .no-print-nav { display: none; }
+            .cv-page { margin: 0; width: 100%; height: 100%; box-shadow: none; border: none; }
+            .sidebar { background: #f5f5f5 !important; }
+            .sidebar-section-title { color: #556b2f !important; border-bottom: 1px solid #ddd !important; }
+            .header h2, .exp-company, .proj-stack, .edu-date { color: #556b2f !important; }
+        }
+
+        @media (max-width: 800px) {
+            .cv-page { width: 95%; grid-template-columns: 1fr; }
+            .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print-nav">
+        <a href="index.html" class="btn-action btn-outline">← Back to Portfolio</a>
+        <a href="cv.html" class="btn-action btn-outline">Versión en Español</a>
+        <button onclick="window.print()" class="btn-action">Download PDF / Print</button>
+    </div>
+
+    <div class="cv-page">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="profile-pic">
+                <img src="assets/profile.jpg" alt="Daniel Hernández Rubio">
+            </div>
+
+            <div>
+                <h3 class="sidebar-section-title">Contact</h3>
+                <ul class="contact-list">
+                    <li class="contact-item">📧 <a href="mailto:danielhrubio3@gmail.com">danielhrubio3@gmail.com</a></li>
+                    <li class="contact-item">📍 Pachuca, Hidalgo, MX</li>
+                    <li class="contact-item">🔗 <a href="https://danielhr3.github.io" target="_blank">danielhr3.github.io</a></li>
+                    <li class="contact-item">🐙 <a href="https://github.com/DanielHR3" target="_blank">github.com/DanielHR3</a></li>
+                    <li class="contact-item">💼 <a href="https://linkedin.com/in/danielhernandezrubio" target="_blank">in/danielhernandezrubio</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="sidebar-section-title">Technologies</h3>
+                <div class="skills-group">
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">Express.js</span>
+                    <span class="skill-tag">TailwindCSS</span>
+                    <span class="skill-tag">Git</span>
+                    <span class="skill-tag">REST APIs</span>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="sidebar-section-title">Certifications</h3>
+                <div class="cert-item">
+                    <div class="cert-title">Modern PHP (MySQL & Postman)</div>
+                    <div class="cert-meta">Udemy · 2025</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">SQL Programming (MySQL)</div>
+                    <div class="cert-meta">Udemy · 2025</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">TypeScript: Complete Guide</div>
+                    <div class="cert-meta">DevTalles · 2024</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">Frontend Certification</div>
+                    <div class="cert-meta">Alura LATAM · 2023</div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="sidebar-section-title">Languages</h3>
+                <div class="cert-item">
+                    <div class="cert-title">Spanish</div>
+                    <div class="cert-meta">Native</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">English</div>
+                    <div class="cert-meta">Basic / Technical</div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Daniel <br>Hernández R.</h1>
+                <h2>Software Developer</h2>
+            </header>
+
+            <section>
+                <p class="summary">
+                    Developer focused on creating accessible and functional solutions. Experience in technical support, systems maintenance, and web development with Node.js, Angular, Python, and PHP. Specialized in process optimization and technical training.
+                </p>
+            </section>
+
+            <section>
+                <h3 class="section-title">Professional Experience</h3>
+                
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-role">IT Assistant</span>
+                        <span class="exp-date">Apr 2022 — Mar 2023</span>
+                    </div>
+                    <div class="exp-company">Government of the State of Hidalgo</div>
+                    <ul class="exp-desc">
+                        <li>Institutional systems administration and Level 1/2 technical support.</li>
+                        <li>Maintenance and management of flat databases for operational records.</li>
+                        <li>End-user training and optimization of departmental operational flows.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Freelance Developer</span>
+                        <span class="exp-date">Jan 2023 — Present</span>
+                    </div>
+                    <div class="exp-company">Independent Projects</div>
+                    <ul class="exp-desc">
+                        <li>Development of custom web and desktop solutions for SMEs.</li>
+                        <li>Integration of third-party APIs and management of local/cloud databases.</li>
+                        <li>Migration of legacy systems to modern technologies (React/Angular).</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Featured Projects</h3>
+
+                <div class="project-item">
+                    <div class="proj-header">
+                        <span class="proj-name">U CHIICH</span>
+                        <span class="proj-stack">Angular / TypeScript / SCSS</span>
+                    </div>
+                    <p class="proj-desc">Business website for a traditional Mexican food brand. Focus on branding, digital menu, and responsive design.</p>
+                </div>
+
+                <div class="project-item">
+                    <div class="proj-header">
+                        <span class="proj-name">Angular GPT</span>
+                        <span class="proj-stack">Angular / OpenAI API</span>
+                    </div>
+                    <p class="proj-desc">Advanced virtual assistant integrated with AI for intelligent processing and a premium user interface.</p>
+                </div>
+
+                <div class="project-item">
+                    <div class="proj-header">
+                        <span class="proj-name">Veterinaria Desktop App</span>
+                        <span class="proj-stack">Python / SQLite / FPDF</span>
+                    </div>
+                    <p class="proj-desc">Comprehensive management of patients, appointments, and inventory with automated PDF medical report generation.</p>
+                </div>
+
+                <div class="project-item">
+                    <div class="proj-header">
+                        <span class="proj-name">EcoConnect</span>
+                        <span class="proj-stack">Node.js / Angular / MongoDB</span>
+                    </div>
+                    <p class="proj-desc">Sustainability platform for businesses that automates ecological impact reports using AI.</p>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="section-title">Education</h3>
+                
+                <div class="education-item">
+                    <div class="edu-school">Software Engineering</div>
+                    <div class="edu-degree">Digital University of the State of Hidalgo</div>
+                    <div class="edu-date">Completed</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>
