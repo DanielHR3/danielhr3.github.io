@@ -3,19 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daniel Hernández Rubio — Fullstack Developer</title>
+  <title>Daniel Hernández Rubio — Ingeniero de Software Fullstack</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <meta name="description" content="Portfolio de Daniel Hernández Rubio — Desarrollador Fullstack con enfoque en frontend moderno, Angular, React, NestJS y bases de datos.">
-  <meta property="og:title" content="Daniel Hernández Rubio — Fullstack Developer" />
-  <meta property="og:description" content="Desarrollador Fullstack Jr. especializado en frontend moderno y backend. Disponible para nuevas oportunidades." />
+  <link rel="canonical" href="https://danielhr3.github.io/">
+  <meta name="description" content="Ingeniero de software fullstack. Productos web, móviles y de escritorio offline-first con Next.js, NestJS, Angular, Go y PostgreSQL/PostGIS, y desarrollo asistido por agentes de IA.">
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://danielhr3.github.io/" />
+  <meta property="og:title" content="Daniel Hernández Rubio — Ingeniero de Software Fullstack" />
+  <meta property="og:description" content="Productos web, móviles y de escritorio offline-first con TypeScript, Go y PostgreSQL. Proyectos en producción y stack explicado por uso." />
+  <meta property="og:image" content="https://danielhr3.github.io/assets/profile.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <script>document.documentElement.classList.add('js')</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Daniel Hernández Rubio",
+    "jobTitle": "Ingeniero de Software",
+    "url": "https://danielhr3.github.io/",
+    "image": "https://danielhr3.github.io/assets/profile.jpg",
+    "email": "mailto:danielhrubio3@gmail.com",
+    "sameAs": [
+      "https://github.com/DanielHR3",
+      "https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/"
+    ]
+  }
+  </script>
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,21 +42,22 @@
       --bg: #0a0a0a;
       --bg-secondary: #111111;
       --bg-card: #161616;
-      --border: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
       --border-hover: rgba(107,142,35,0.5);
       --accent: #6B8E23;
-      --accent-light: #8cba2d;
+      --accent-light: #9bc53d;
       --accent-muted: rgba(107,142,35,0.15);
       --warm: #A67B5B;
+      --violet: #a78bfa;
       --text-primary: #f4f4f4;
-      --text-secondary: #8a8a8a;
-      --text-muted: #555;
+      --text-secondary: #a3a3a3;
+      --text-muted: #7d7d7d;
       --radius: 12px;
       --shadow-card: 0 4px 40px rgba(0,0,0,0.4);
       --glow: 0 0 30px rgba(107,142,35,0.12);
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 
     body {
       background: var(--bg);
@@ -51,6 +70,12 @@
     h1,h2,h3,h4 { font-family: 'Space Grotesk', system-ui, sans-serif; }
 
     ::selection { background: var(--accent); color: #fff; }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--accent-light);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
 
     ::-webkit-scrollbar { width: 5px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
@@ -81,12 +106,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 1rem;
     }
     .nav-brand {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
       font-size: 1.1rem;
-      background: linear-gradient(135deg, #6B8E23, #A67B5B);
+      background: linear-gradient(135deg, #9bc53d, #A67B5B);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -100,8 +126,9 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: color 0.2s;
+      white-space: nowrap;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--accent-light); }
 
     /* ─── WRAPPER ─── */
     .wrapper { position: relative; z-index: 1; }
@@ -109,6 +136,7 @@
     /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -120,8 +148,6 @@
       position: relative;
       width: 160px; height: 160px;
       margin-bottom: 2rem;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
     }
     .hero-avatar::before {
       content: '';
@@ -148,15 +174,11 @@
       position: relative;
       z-index: 1;
     }
-    .hero-avatar-inner img { 
-      width: 100%; height: 100%; 
-      object-fit: cover; 
-      transition: transform 0.8s ease;
+    .hero-avatar-inner img {
+      width: 100%; height: 100%;
+      object-fit: cover;
       filter: contrast(1.05) brightness(1.05);
     }
-    .hero-avatar:hover { transform: scale(1.05) translateY(-5px); }
-    .hero-avatar:hover img { transform: scale(1.1); }
-    .hero-avatar:hover::before { inset: -8px; opacity: 0.8; }
 
     .badge-available {
       display: inline-flex;
@@ -195,13 +217,26 @@
       margin-bottom: 1rem;
     }
     .hero-role {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--text-secondary);
-      max-width: 520px;
-      margin: 0 auto 2rem;
+      max-width: 620px;
+      margin: 0 auto 1.5rem;
       line-height: 1.7;
     }
-    .hero-role span { color: var(--accent); font-weight: 500; }
+    .hero-role span { color: var(--accent-light); font-weight: 500; }
+
+    .hero-facts {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem 1.75rem;
+      list-style: none;
+      margin-bottom: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .hero-facts strong { color: var(--text-primary); font-weight: 600; }
+
     .hero-ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; }
 
     .btn {
@@ -223,22 +258,27 @@
       background: var(--accent);
       color: #fff;
     }
-    .btn-primary:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(107,142,35,0.3); }
+    .btn-primary:hover { background: #7da42a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(107,142,35,0.3); }
     .btn-secondary {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--text-primary);
     }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-1px); }
 
     /* ─── SECTIONS ─── */
     section { padding: 5rem 1.5rem; }
+    .section-alt {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-label {
       font-size: 0.72rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--accent-light);
       font-weight: 500;
       margin-bottom: 0.5rem;
     }
@@ -252,33 +292,58 @@
       color: var(--text-secondary);
       margin-bottom: 3rem;
       font-size: 0.95rem;
+      max-width: 640px;
     }
 
-    /* ─── SKILLS ─── */
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
+    /* ─── STACK ─── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
     }
-    .skill-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
+    .stack-group {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      color: var(--text-secondary);
-      font-size: 0.8rem;
-      padding: 0.45rem 0.9rem;
-      border-radius: 100px;
-      transition: all 0.25s ease;
+      border-radius: var(--radius);
+      padding: 1.5rem;
     }
-    .skill-pill:hover {
-      border-color: var(--accent);
+    .stack-group.is-ai { border-color: rgba(139,92,246,0.25); background: linear-gradient(135deg, #0d0b18 0%, var(--bg-card) 60%); }
+    .stack-group h3 {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--accent-light);
-      background: var(--accent-muted);
-      transform: translateY(-2px);
+      font-weight: 600;
+      margin-bottom: 1rem;
     }
-    .skill-pill img { width: 16px; height: 16px; filter: brightness(0.8); }
+    .stack-group.is-ai h3 { color: var(--violet); }
+    .stack-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
+    .stack-list li { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; }
+    .stack-list strong {
+      display: block;
+      color: var(--text-primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* ─── HOW I WORK ─── */
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .method-item h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .method-item p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+    .method-num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.75rem;
+      color: var(--warm);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
 
     /* ─── CARDS ─── */
     .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
@@ -286,8 +351,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 0;
-      transition: all 0.3s ease;
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -295,44 +359,33 @@
     }
     .card-preview {
       width: 100%;
-      height: 160px;
+      aspect-ratio: 16 / 10;
       overflow: hidden;
       border-bottom: 1px solid var(--border);
-      position: relative;
+      background: #0d0d0d;
     }
     .card-preview img {
+      display: block;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top;
       transition: transform 0.5s ease;
-      filter: brightness(0.9);
     }
-    .card:hover .card-preview img {
-      transform: scale(1.08);
-      filter: brightness(1.1);
-    }
+    .card:hover .card-preview img { transform: scale(1.04); }
     .card-body {
       padding: 1.5rem;
-      position: relative;
-      z-index: 1;
       flex-grow: 1;
-    }
-    .card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--accent-muted) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      display: flex;
+      flex-direction: column;
     }
     .card:hover {
       border-color: var(--border-hover);
       transform: translateY(-4px);
       box-shadow: var(--shadow-card), var(--glow);
     }
-    .card:hover::before { opacity: 1; }
-    .card-content { position: relative; z-index: 1; }
     .card-badge {
+      align-self: flex-start;
       display: inline-block;
       background: var(--accent-muted);
       color: var(--accent-light);
@@ -366,15 +419,16 @@
       font-size: 0.7rem;
       background: rgba(255,255,255,0.05);
       border: 1px solid var(--border);
-      color: var(--text-muted);
+      color: var(--text-secondary);
       padding: 0.2rem 0.55rem;
       border-radius: 4px;
     }
+    .card-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: auto; }
     .card-link {
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      color: var(--accent);
+      color: var(--accent-light);
       font-size: 0.8rem;
       font-weight: 500;
       text-decoration: none;
@@ -383,42 +437,37 @@
     .card-link:hover { gap: 0.55rem; }
     .card-link::after { content: '→'; }
 
-    /* Featured (Aura) card */
+    /* Featured card */
     .card-featured {
       grid-column: 1 / -1;
+      flex-direction: row;
       background: linear-gradient(135deg, #0f150a 0%, var(--bg-card) 60%);
       border-color: rgba(107,142,35,0.25);
     }
-    .card-featured-inner {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: center;
-    }
-    .card-featured-preview {
-      width: 260px;
-      height: 160px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid var(--border);
+    .card-featured .card-preview {
+      width: 48%;
       flex-shrink: 0;
-      position: relative;
+      aspect-ratio: auto;
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      order: 2;
+      border-left: 1px solid var(--border);
     }
-    .card-featured-preview img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); transition: all 0.5s ease; }
-    .card-featured:hover .card-featured-preview img { transform: scale(1.05); filter: brightness(1); }
+    .card-featured .card-body { padding: 2rem; }
+    .card-featured .card-title { font-size: 1.4rem; }
 
     /* ─── EXPERIENCE TIMELINE ─── */
     .timeline { display: flex; flex-direction: column; gap: 2rem; }
     .timeline-item {
       display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 2rem;
+      grid-template-columns: 150px 1fr;
+      gap: 3rem;
       position: relative;
     }
     .timeline-item::before {
       content: '';
       position: absolute;
-      left: 136px;
+      left: 174px;
       top: 10px;
       bottom: -2rem;
       width: 1px;
@@ -430,11 +479,12 @@
       color: var(--text-muted);
       text-align: right;
       padding-top: 0.1rem;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
     }
     .timeline-dot {
       position: absolute;
-      left: 132px;
+      left: 170px;
       top: 8px;
       width: 9px;
       height: 9px;
@@ -442,7 +492,7 @@
       background: var(--accent);
       box-shadow: 0 0 8px rgba(107,142,35,0.5);
     }
-    .timeline-body { padding-left: 1rem; }
+    .timeline-body { padding-left: 0.5rem; }
     .timeline-role {
       font-size: 1rem;
       font-weight: 600;
@@ -451,13 +501,43 @@
     }
     .timeline-company {
       font-size: 0.82rem;
-      color: var(--accent);
+      color: var(--accent-light);
       margin-bottom: 0.6rem;
     }
     .timeline-desc {
       font-size: 0.85rem;
       color: var(--text-secondary);
       line-height: 1.65;
+      max-width: 720px;
+    }
+    .timeline-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* ─── LEARNING ─── */
+    .learn-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.75rem 2rem;
+      list-style: none;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .learn-list li { font-size: 0.85rem; color: var(--text-primary); }
+    .learn-list span { display: block; font-size: 0.75rem; color: var(--text-muted); }
+    .learn-title {
+      grid-column: 1 / -1;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.78rem !important;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-light) !important;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
     }
 
     /* ─── CONTACT / FOOTER ─── */
@@ -472,49 +552,43 @@
       font-weight: 600;
       margin-bottom: 0.75rem;
     }
-    .footer-sub { color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.9rem; }
+    .footer-sub { color: var(--text-secondary); margin: 0 auto 2rem; font-size: 0.9rem; max-width: 520px; }
     .footer-ctas { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
     .footer-copy { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em; }
 
-    /* ─── LOADER ─── */
-    #loader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: #0a0a0a;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column; gap: 1rem;
-      transition: opacity 0.5s ease;
+    /* ─── REVEAL ON SCROLL (solo si hay JS) ─── */
+    .js [data-reveal] {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    #loader.hide { opacity: 0; pointer-events: none; }
-    .loader-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, #6B8E23, #A67B5B);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: 0.1em;
+    .js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+      .hero-avatar::before, .badge-dot { animation: none; }
+      .card, .card-preview img, .btn { transition: none; }
     }
-    .loader-bar {
-      width: 160px; height: 2px;
-      background: #1a1a1a;
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .loader-progress {
-      height: 100%;
-      background: linear-gradient(90deg, #6B8E23, #A67B5B);
-      border-radius: 2px;
-      animation: load 1.5s ease-out forwards;
-    }
-    @keyframes load { from { width: 0 } to { width: 100% } }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .card-featured-inner { grid-template-columns: 1fr; }
-      .card-featured-preview { width: 100%; height: 180px; }
-      .timeline-item { grid-template-columns: 1fr; }
+      nav { padding: 0.85rem 1rem; gap: 0.75rem; }
+      .nav-links { gap: 0.75rem; overflow-x: auto; scrollbar-width: none; }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { font-size: 0.66rem; letter-spacing: 0.02em; }
+      section { padding: 4rem 1.25rem; }
+      .card-featured { flex-direction: column; }
+      .card-featured .card-preview {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        order: 0;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+      .card-featured .card-body { padding: 1.5rem; }
+      .timeline-item { grid-template-columns: 1fr; gap: 0.4rem; }
       .timeline-item::before, .timeline-dot { display: none; }
       .timeline-date { text-align: left; }
       .timeline-body { padding-left: 0; }
@@ -523,29 +597,15 @@
 </head>
 <body>
 
-<!-- Loader -->
-<div id="loader">
-  <div class="loader-logo">DHR // Portfolio</div>
-  <div class="loader-bar"><div class="loader-progress"></div></div>
-</div>
-
-<script>
-  setTimeout(() => {
-    const l = document.getElementById('loader');
-    l.classList.add('hide');
-    setTimeout(() => l.remove(), 500);
-  }, 1600);
-</script>
-
 <!-- Grid background -->
 <div class="grid-bg"></div>
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-brand">DHR.</a>
+  <a href="#home" class="nav-brand" aria-label="Inicio">DHR.</a>
   <ul class="nav-links">
-    <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#stack">Stack</a></li>
     <li><a href="#experience">Experiencia</a></li>
     <li><a href="#contact">Contacto</a></li>
   </ul>
@@ -557,7 +617,10 @@
 <section class="hero" id="home">
   <div class="hero-avatar">
     <div class="hero-avatar-inner">
-      <img src="assets/profile.jpg" alt="Daniel Hernández Rubio">
+      <picture>
+        <source srcset="assets/profile.webp" type="image/webp">
+        <img src="assets/profile.jpg" alt="Daniel Hernández Rubio" width="160" height="160">
+      </picture>
     </div>
   </div>
 
@@ -568,282 +631,373 @@
 
   <h1 class="hero-name">Daniel Hernández Rubio</h1>
   <p class="hero-role">
-    <span>Ingeniero de Software</span> · Fullstack &amp; Agrotech Developer<br>
-    Creando soluciones offline-first, automatizaciones con IA y plataformas fullstack de alto impacto.
+    <span>Ingeniero de Software Fullstack.</span>
+    Construyo productos web, móviles y de escritorio que siguen funcionando sin conexión,
+    con TypeScript de punta a punta y desarrollo asistido por agentes de IA.
   </p>
 
+  <ul class="hero-facts">
+    <li><strong>Next.js · NestJS · Angular</strong> en web</li>
+    <li><strong>Go · Python</strong> en escritorio y herramientas</li>
+    <li><strong>PostgreSQL / PostGIS</strong> en datos</li>
+  </ul>
+
   <div class="hero-ctas">
-    <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio-2351871b1/" target="_blank" class="btn btn-primary">
-      Ver perfil profesional
-    </a>
-    <div style="display: flex; flex-direction: column; gap: 0.5rem; align-items: center;">
-      <a href="cv.html" class="btn btn-secondary" style="width: 100%;">
-        Ver CV (Español)
-      </a>
-      <a href="cv-en.html" class="btn btn-secondary" style="width: 100%; border-color: rgba(139,92,246,0.3); color: #a78bfa;">
-        Check CV (English)
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" style="background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
-  <div class="section-inner">
-    <p class="section-label" data-aos="fade-up">Tecnologías</p>
-    <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">Stack tecnológico</h2>
-    <p class="section-sub" data-aos="fade-up" data-aos-delay="100">Herramientas con las que construyo soluciones reales.</p>
-
-    <div class="skills-grid" data-aos="fade-up" data-aos-delay="150">
-      <div class="skill-pill">🐹 Go (Golang)</div>
-      <div class="skill-pill">⚙️ Prisma ORM</div>
-      <div class="skill-pill">🐘 PostgreSQL</div>
-      <div class="skill-pill"><img src="assets/icons/angular.svg" alt="Angular">Angular</div>
-      <div class="skill-pill"><img src="assets/icons/typescript.svg" alt="TypeScript">TypeScript</div>
-      <div class="skill-pill"><img src="assets/icons/tailwind.svg" alt="Tailwind">Tailwind CSS</div>
-      <div class="skill-pill"><img src="assets/icons/scss.svg" alt="SCSS">SCSS</div>
-      <div class="skill-pill"><img src="assets/icons/nestjs.svg" alt="NestJS">NestJS</div>
-      <div class="skill-pill"><img src="assets/icons/python.svg" alt="Python">Python</div>
-      <div class="skill-pill"><img src="assets/icons/mysql.svg" alt="MySQL">MySQL</div>
-      <div class="skill-pill"><img src="assets/icons/git.svg" alt="Git">Git</div>
-      <div class="skill-pill"><img src="assets/icons/docker.svg" alt="Docker">Docker</div>
-      <div class="skill-pill">⚛️ React</div>
-      <div class="skill-pill">🟡 JavaScript</div>
-    </div>
-
-    <p class="section-label" style="margin-top:2rem; margin-bottom:0.75rem" data-aos="fade-up">IA &amp; Agentes</p>
-    <div class="skills-grid" data-aos="fade-up">
-      <div class="skill-pill" style="border-color:rgba(139,92,246,0.3); color:#a78bfa">🤖 Agentes de IA</div>
-      <div class="skill-pill" style="border-color:rgba(139,92,246,0.3); color:#a78bfa">🧠 OpenAI API</div>
-      <div class="skill-pill" style="border-color:rgba(139,92,246,0.3); color:#a78bfa">⚡ Claude (Anthropic)</div>
-      <div class="skill-pill" style="border-color:rgba(139,92,246,0.3); color:#a78bfa">✦ Cursor AI</div>
-      <div class="skill-pill" style="border-color:rgba(139,92,246,0.3); color:#a78bfa">💬 Prompt Engineering</div>
-      <div class="skill-pill" style="border-color:rgba(139,92,246,0.3); color:#a78bfa">🔄 RAG / LangChain</div>
-    </div>
+    <a href="#projects" class="btn btn-primary">Ver proyectos</a>
+    <a href="cv.html" class="btn btn-secondary">CV en español</a>
+    <a href="cv-en.html" class="btn btn-secondary">CV in English</a>
+    <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" class="section-alt">
   <div class="section-inner">
-    <p class="section-label" data-aos="fade-up">Portfolio</p>
-    <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">Proyectos destacados</h2>
-    <p class="section-sub" data-aos="fade-up" data-aos-delay="100">Lo que he construido recientemente.</p>
+    <p class="section-label" data-reveal>Portfolio</p>
+    <h2 class="section-title" data-reveal>Proyectos</h2>
+    <p class="section-sub" data-reveal>Productos propios y trabajo para clientes. Los que tienen demo están desplegados y se pueden probar.</p>
 
     <div class="card-grid">
 
-      <!-- JARVIS — Featured -->
-      <div class="card card-featured" data-aos="fade-up">
-        <div class="card-content">
-          <div class="card-featured-inner">
-            <div>
-              <span class="card-badge" style="border-color:rgba(139,92,246,0.25); background:rgba(139,92,246,0.1); color:#a78bfa">✨ Destacado · Agrotech AI</span>
-              <h3 class="card-title">JARVIS — Agrotech AI Platform</h3>
-              <p class="card-desc">Nodo central de inteligencia agropecuaria para Rancho Don Pablito. Integra el inventario de SheepMaster, transcripción de voz de vaqueros en campo vía OpenAI Whisper, y webhooks automatizados con n8n para sincronizar notas de Obsidian. Estética Dark Academia & Western.</p>
-              <div class="card-stack">
-                <span class="stack-tag">Next.js 15 (App Router)</span>
-                <span class="stack-tag">NestJS</span>
-                <span class="stack-tag">Prisma ORM</span>
-                <span class="stack-tag">PostgreSQL</span>
-                <span class="stack-tag">n8n</span>
-                <span class="stack-tag">OpenAI Whisper</span>
-              </div>
-            </div>
-            <div class="card-featured-preview">
-              <img src="assets/previews/jarvis.png" alt="Preview de JARVIS Agrotech AI">
-            </div>
+      <!-- Pañuelo sin efecto — Featured -->
+      <article class="card card-featured" data-reveal>
+        <div class="card-preview">
+          <img src="assets/previews/panuelo.webp" alt="Pantalla de inicio de Pañuelo sin efecto" width="960" height="600">
+        </div>
+        <div class="card-body">
+          <span class="card-badge">En producción · PWA offline-first</span>
+          <h3 class="card-title">Pañuelo sin efecto</h3>
+          <p class="card-desc">Arbitraje y gestión de ligas de flag football. El árbitro anota desde el celular aunque no haya señal en el campo: las jugadas se guardan en IndexedDB y se sincronizan al volver la conexión. El marcador no se edita, se reconstruye a partir de eventos inmutables (event sourcing), así que cada partido queda auditable. Incluye panel para dueños de liga y modo de arbitraje sin cuenta.</p>
+          <div class="card-stack">
+            <span class="stack-tag">Next.js (App Router)</span>
+            <span class="stack-tag">NestJS</span>
+            <span class="stack-tag">Prisma</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">TanStack Query</span>
+            <span class="stack-tag">shadcn/ui</span>
+            <span class="stack-tag">Docker</span>
+            <span class="stack-tag">GitHub Actions</span>
+          </div>
+          <div class="card-links">
+            <a href="https://panuelo-sin-efecto.vercel.app" target="_blank" rel="noopener" class="card-link">Ver demo</a>
           </div>
         </div>
-      </div>
+      </article>
 
       <!-- SheepMaster -->
-      <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <article class="card" data-reveal>
         <div class="card-preview">
-          <img src="assets/previews/sheepmaster.png" alt="Preview de SheepMaster">
+          <img src="assets/previews/sheepmaster.webp" alt="Sitio de SheepMaster" width="960" height="600" loading="lazy">
         </div>
         <div class="card-body">
-          <span class="card-badge">Offline-First App</span>
+          <span class="card-badge">En producción · Agrotech</span>
           <h3 class="card-title">SheepMaster</h3>
-          <p class="card-desc">Software híbrido de escritorio y PWA móvil para control de peso (GDP), reproducción y tratamientos médicos de ganado ovino. Diseñado para trabajar sin internet en los corrales con sincronización cloud a JARVIS.</p>
+          <p class="card-desc">Gestión de hato ovino: pesajes, ganancia diaria de peso, reproducción, tratamientos y genealogía. App de escritorio en Go que trabaja contra SQLite local y encola los cambios para sincronizarlos a la nube cuando hay internet; la misma interfaz funciona como PWA en el corral. Configurable por rancho.</p>
           <div class="card-stack">
-            <span class="stack-tag">Go (Golang)</span>
+            <span class="stack-tag">Go</span>
             <span class="stack-tag">Wails v2</span>
-            <span class="stack-tag">React</span>
+            <span class="stack-tag">React + TypeScript</span>
             <span class="stack-tag">SQLite</span>
-            <span class="stack-tag">Vite PWA</span>
+            <span class="stack-tag">Supabase</span>
+            <span class="stack-tag">Cloud Run</span>
           </div>
-          <a href="https://github.com/DanielHR3/Master_sheep" target="_blank" class="card-link">Ver repositorio</a>
+          <div class="card-links">
+            <a href="https://danielhr3.github.io/Master_sheep/" target="_blank" rel="noopener" class="card-link">Ver sitio</a>
+          </div>
         </div>
-      </div>
+      </article>
 
-
-
-      <!-- Aura Landing Page -->
-      <div class="card" data-aos="fade-up" data-aos-delay="100">
+      <!-- VetSys -->
+      <article class="card" data-reveal>
         <div class="card-preview">
-          <img src="assets/previews/aura_clothing.png" alt="Preview de Aura Landing Page">
+          <img src="assets/previews/vetsys.webp" alt="Pantalla de acceso de VetSys Pro" width="960" height="600" loading="lazy">
         </div>
         <div class="card-body">
-          <span class="card-badge">E-commerce Landing</span>
-          <h3 class="card-title">Aura Landing Page</h3>
-          <p class="card-desc">Landing page de moda minimalista de lujo. Diseño editorial con Hero animado, Lookbook, BentoGrid de categorías, grid de productos con Quick Add y newsletter responsivo.</p>
+          <span class="card-badge">SaaS multi-tenant</span>
+          <h3 class="card-title">VetSys Pro</h3>
+          <p class="card-desc">Sistema para clínicas veterinarias: expedientes, citas, inventario y ventas. Nació como app de escritorio en Python y lo migré a SaaS: cada clínica queda aislada por tenant, la API valida la suscripción en cada petición y el alta de clínicas y licencias está automatizada.</p>
+          <div class="card-stack">
+            <span class="stack-tag">Next.js</span>
+            <span class="stack-tag">FastAPI</span>
+            <span class="stack-tag">PostgreSQL</span>
+            <span class="stack-tag">JWT</span>
+            <span class="stack-tag">Cloud Run</span>
+            <span class="stack-tag">Vercel</span>
+          </div>
+          <div class="card-links">
+            <a href="https://vetsys-ashen.vercel.app" target="_blank" rel="noopener" class="card-link">Ver app</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- OrtoKids -->
+      <article class="card" data-reveal>
+        <div class="card-preview">
+          <img src="assets/previews/ortokids.webp" alt="Sitio del consultorio dental OrtoKids" width="960" height="600" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="card-badge">Cliente · En producción</span>
+          <h3 class="card-title">OrtoKids</h3>
+          <p class="card-desc">Sitio para un consultorio dental con formulario de citas. Componentes reutilizables, validación del formulario aislada en un hook propio, tokens de color derivados del logotipo y Firebase Analytics.</p>
+          <div class="card-stack">
+            <span class="stack-tag">React 19</span>
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">Vite</span>
+            <span class="stack-tag">Firebase Hosting</span>
+          </div>
+          <div class="card-links">
+            <a href="https://ortokids-adcb8.web.app" target="_blank" rel="noopener" class="card-link">Ver sitio</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- U CHIICH -->
+      <article class="card" data-reveal>
+        <div class="card-preview">
+          <img src="assets/previews/uchiich.webp" alt="Sitio del restaurante U CHIICH" width="960" height="600" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="card-badge">Sitio de negocio</span>
+          <h3 class="card-title">U CHIICH — Comida yucateca</h3>
+          <p class="card-desc">Sitio para un negocio de comida tradicional: menú, historia de la marca, ubicación y pedido directo por WhatsApp.</p>
+          <div class="card-stack">
+            <span class="stack-tag">Angular</span>
+            <span class="stack-tag">TypeScript</span>
+            <span class="stack-tag">SCSS</span>
+          </div>
+          <div class="card-links">
+            <a href="https://danielhr3.github.io/UCHIICH/" target="_blank" rel="noopener" class="card-link">Ver sitio</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Aura -->
+      <article class="card" data-reveal>
+        <div class="card-preview">
+          <img src="assets/previews/aura.webp" alt="Aura, landing page de moda" width="640" height="640" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="card-badge">Landing · Ejercicio de diseño</span>
+          <h3 class="card-title">Aura</h3>
+          <p class="card-desc">Landing de moda con layout editorial: hero animado, lookbook, bento grid de categorías y grid de productos con quick add.</p>
           <div class="card-stack">
             <span class="stack-tag">React 19</span>
             <span class="stack-tag">Tailwind CSS 4</span>
             <span class="stack-tag">Framer Motion</span>
             <span class="stack-tag">Vite</span>
           </div>
-          <a href="https://github.com/DanielHR3/aura-landing-page" target="_blank" class="card-link">Ver repositorio</a>
         </div>
+      </article>
+
+
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack">
+  <div class="section-inner">
+    <p class="section-label" data-reveal>Tecnologías</p>
+    <h2 class="section-title" data-reveal>Stack, y para qué lo uso</h2>
+    <p class="section-sub" data-reveal>Lo que uso en mis productos y en mi trabajo actual en sector público. Los sistemas institucionales son confidenciales, así que aquí describo la tecnología y el tipo de problema, no los proyectos.</p>
+
+    <div class="stack-grid">
+
+      <div class="stack-group" data-reveal>
+        <h3>Frontend</h3>
+        <ul class="stack-list">
+          <li><strong>Next.js · React 19</strong>Portales administrativos, PWAs y sitios públicos con App Router, TanStack Query y shadcn/ui. Sitios multilingües con next-intl.</li>
+          <li><strong>Angular</strong>Aplicaciones empresariales para sector salud, y auditoría y plan de modernización de sistemas heredados.</li>
+          <li><strong>TypeScript estricto</strong>En todo el stack web, con el cliente de API generado desde el contrato OpenAPI.</li>
+          <li><strong>Tailwind CSS · design tokens</strong>Un solo archivo de tokens que alimenta web y React Native.</li>
+        </ul>
       </div>
 
-      <!-- EcoConnect -->
-      <div class="card" data-aos="fade-up" data-aos-delay="150">
-        <div class="card-preview">
-          <img src="assets/previews/ecoconnect.png" alt="Preview de EcoConnect">
-        </div>
-        <div class="card-body">
-          <span class="card-badge">Web Platform</span>
-          <h3 class="card-title">EcoConnect</h3>
-          <p class="card-desc">Aplicación web que automatiza reportes de impacto sostenible mediante modelos de lenguaje (OpenAI), ayudando a PYMES a proyectar su compromiso ecológico.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Angular</span>
-            <span class="stack-tag">NestJS</span>
-            <span class="stack-tag">MySQL</span>
-            <span class="stack-tag">OpenAI API</span>
-          </div>
-          <a href="https://github.com/DanielHR3/ecoconnect-frontend" target="_blank" class="card-link">Ver repositorio</a>
-        </div>
+      <div class="stack-group" data-reveal>
+        <h3>Backend</h3>
+        <ul class="stack-list">
+          <li><strong>NestJS</strong>APIs REST documentadas con Swagger, validación con DTOs, JWT en cookie httpOnly y tareas programadas.</li>
+          <li><strong>Python · FastAPI</strong>APIs SaaS multi-tenant, herramientas de línea de comandos y procesadores que validan y transforman documentos, con pruebas en pytest.</li>
+          <li><strong>Go</strong>App de escritorio con Wails y motor de sincronización offline con cola de salida y reintentos.</li>
+          <li><strong>Prisma · TypeORM · SQLAlchemy</strong>Modelado y migraciones según el lenguaje del servicio.</li>
+        </ul>
       </div>
 
-      <!-- VetSys -->
-      <div class="card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-preview">
-          <img src="assets/previews/vetsys.png" alt="Preview de VetSys">
-        </div>
-        <div class="card-body">
-          <span class="card-badge">Desktop ERP</span>
-          <h3 class="card-title">VetSys — Veterinaria</h3>
-          <p class="card-desc">Sistema de escritorio offline para veterinarias. Gestiona expedientes médicos, recetas, citas e inventario con generación de recetas y reportes médicos en PDF.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Python</span>
-            <span class="stack-tag">SQLite</span>
-            <span class="stack-tag">customTkinter</span>
-            <span class="stack-tag">FPDF</span>
-          </div>
-          <a href="https://github.com/DanielHR3/vetsys" target="_blank" class="card-link">Ver repositorio</a>
-        </div>
+      <div class="stack-group" data-reveal>
+        <h3>Datos</h3>
+        <ul class="stack-list">
+          <li><strong>PostgreSQL · PostGIS</strong>Base principal. Consultas geoespaciales para geocercas: validar que un registro se hizo dentro de un polígono.</li>
+          <li><strong>SQLite · IndexedDB</strong>Almacenamiento local en apps offline-first de escritorio y navegador.</li>
+          <li><strong>Supabase · Neon · MySQL</strong>Postgres administrado para productos propios; MySQL en sistemas existentes.</li>
+          <li><strong>SQL</strong>Reportes de uso sobre bases en producción y migraciones entre motores.</li>
+        </ul>
       </div>
 
-      <!-- UCHIICH -->
-      <div class="card" data-aos="fade-up" data-aos-delay="150">
-        <div class="card-preview" style="background: #FF6D00; display: flex; align-items: center; justify-content: center;">
-          <div style="font-family: 'Space Grotesk'; font-weight: 700; color: white; font-size: 1.5rem;">U CHIICH</div>
-        </div>
-        <div class="card-body">
-          <span class="card-badge">Business Web</span>
-          <h3 class="card-title">U CHIICH — Comida Yucateca</h3>
-          <p class="card-desc">Sitio web empresarial responsivo para un restaurante de comida tradicional. Optimización SEO, menú interactivo y consistencia en el diseño de marca.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Angular</span>
-            <span class="stack-tag">TypeScript</span>
-            <span class="stack-tag">SCSS</span>
-          </div>
-          <a href="https://danielhr3.github.io/UCHIICH/" target="_blank" class="card-link">Ver sitio en vivo</a>
-        </div>
+      <div class="stack-group" data-reveal>
+        <h3>Móvil, escritorio y mapas</h3>
+        <ul class="stack-list">
+          <li><strong>Expo · React Native</strong>Apps con cámara, GPS, mapas y notificaciones push.</li>
+          <li><strong>PWA</strong>Instalables y operables sin señal, con sincronización al reconectar.</li>
+          <li><strong>Wails</strong>Escritorio nativo con interfaz en React.</li>
+          <li><strong>Leaflet · OpenLayers · Mapbox</strong>Visualización de capas y búsqueda por cercanía.</li>
+        </ul>
       </div>
 
-      <!-- IA Agents -->
-      <div class="card" data-aos="fade-up" data-aos-delay="100" style="border-color:rgba(139,92,246,0.25); background: linear-gradient(135deg, #0d0b18 0%, var(--bg-card) 60%)">
-        <div class="card-content" style="padding: 1.5rem;">
-          <span class="card-badge" style="background:rgba(139,92,246,0.15); color:#a78bfa; border-color:rgba(139,92,246,0.25)">🤖 AI Agents</span>
-          <h3 class="card-title">Desarrollo asistido por Agentes IA</h3>
-          <p class="card-desc">Integración activa de flujos con agentes autónomos de IA en el desarrollo: scaffolding de código, refactorización, automatización de pruebas y pipelines de CI/CD para optimizar la velocidad del ciclo de desarrollo.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Claude Sonnet</span>
-            <span class="stack-tag">OpenAI GPT-4o</span>
-            <span class="stack-tag">Cursor AI</span>
-            <span class="stack-tag">Prompt Engineering</span>
-            <span class="stack-tag">n8n</span>
-          </div>
-        </div>
+      <div class="stack-group" data-reveal>
+        <h3>Cloud y DevOps</h3>
+        <ul class="stack-list">
+          <li><strong>AWS</strong>SPA en CloudFront sobre S3 privado, API en EC2, RDS PostgreSQL y correo con SES, con grupos de seguridad cerrados y almacenamiento cifrado.</li>
+          <li><strong>Google Cloud Run · Firebase</strong>Contenedores que escalan a cero, hosting estático y notificaciones push.</li>
+          <li><strong>Docker · GitHub Actions</strong>Entornos locales reproducibles y CI/CD con despliegue automático.</li>
+          <li><strong>S3 · MinIO</strong>Archivos mediante URLs prefirmadas, sin pasar por la API.</li>
+        </ul>
       </div>
 
+      <div class="stack-group is-ai" data-reveal>
+        <h3>IA y agentes</h3>
+        <ul class="stack-list">
+          <li><strong>Claude Code · Gemini CLI</strong>Desarrollo dirigido por agentes: un archivo de contexto por repositorio, historias de usuario con criterios de aceptación y revisión humana de cada diff.</li>
+          <li><strong>APIs de OpenAI, Gemini y Claude</strong>Asistentes integrados en producto con proveedor intercambiable; Whisper para transcribir voz.</li>
+          <li><strong>RAG · LangChain · MCP</strong>Consulta sobre documentos propios y herramientas expuestas a agentes.</li>
+          <li><strong>n8n</strong>Automatizaciones y webhooks entre servicios.</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="method-grid">
+      <div class="method-item" data-reveal>
+        <p class="method-num">01</p>
+        <h3>Primero la historia de usuario</h3>
+        <p>No se desarrolla nada sin historia de usuario y criterios de aceptación. Las pruebas se escriben contra esos criterios.</p>
+      </div>
+      <div class="method-item" data-reveal>
+        <p class="method-num">02</p>
+        <h3>El humano define, el agente ejecuta</h3>
+        <p>Uso agentes de IA para implementar, pero un módulo solo está terminado cuando pasan build, lint y pruebas y una persona revisó el diff.</p>
+      </div>
+      <div class="method-item" data-reveal>
+        <p class="method-num">03</p>
+        <h3>Contrato antes que código</h3>
+        <p>La API se define en OpenAPI y el frontend consume un cliente generado. Jest, Supertest, Vitest y Playwright cubren el resto.</p>
+      </div>
+      <div class="method-item" data-reveal>
+        <p class="method-num">04</p>
+        <h3>Seguridad y documentación</h3>
+        <p>Auditoría de dependencias, revisión contra OWASP Top 10, bitácora de desarrollo y decisiones de arquitectura por escrito.</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience" style="background: var(--bg-secondary); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+<section id="experience" class="section-alt">
   <div class="section-inner">
-    <p class="section-label" data-aos="fade-up">Trayectoria</p>
-    <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">Experiencia</h2>
-    <p class="section-sub" data-aos="fade-up" data-aos-delay="100">Roles en los que he generado impacto real.</p>
+    <p class="section-label" data-reveal>Trayectoria</p>
+    <h2 class="section-title" data-reveal>Experiencia</h2>
+    <p class="section-sub" data-reveal>De soporte técnico a ingeniería de software, con productos propios en paralelo.</p>
 
-    <div class="timeline" data-aos="fade-up" data-aos-delay="150">
+    <div class="timeline">
 
-      <div class="timeline-item">
-        <span class="timeline-date">2024 — Presente</span>
-        <div class="timeline-dot"></div>
-        <div class="timeline-body">
-          <p class="timeline-role">Desarrollador Fullstack Jr.</p>
-          <p class="timeline-company">Proyectos freelance & open source</p>
-          <p class="timeline-desc">Desarrollo de aplicaciones web con Angular, React, NestJS y Python. Integración de APIs de IA (OpenAI, Claude). Uso de agentes de IA para acelerar el ciclo de desarrollo: generación de código, revisión automática y automatización de flujos. Diseño de bases de datos en MySQL y SQLite.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <span class="timeline-date">2023 — 2024</span>
-        <div class="timeline-dot"></div>
-        <div class="timeline-body">
-          <p class="timeline-role">Desarrollador Frontend</p>
-          <p class="timeline-company">Proyectos universitarios & colaboraciones</p>
-          <p class="timeline-desc">Construcción de interfaces con Angular y Tailwind CSS. Consumo de APIs REST, manejo de estados y optimización de rendimiento. Colaboración en equipos con metodologías Scrum.</p>
-        </div>
-      </div>
-
-      <div class="timeline-item">
-        <span class="timeline-date">2022 — Presente</span>
+      <div class="timeline-item" data-reveal>
+        <span class="timeline-date">Abr 2026 — Presente</span>
         <div class="timeline-dot"></div>
         <div class="timeline-body">
           <p class="timeline-role">Ingeniero de Software</p>
-          <p class="timeline-company">Universidad — Ingeniería de Software</p>
-          <p class="timeline-desc">Formación en ingeniería de software, arquitectura de sistemas, bases de datos, estructuras de datos y desarrollo web full-stack. Uso avanzado de agentes de IA como herramienta de productividad y automatización en proyectos reales.</p>
+          <p class="timeline-company">Gobierno del Estado de Hidalgo</p>
+          <p class="timeline-desc">Desarrollo de software institucional bajo un marco de desarrollo asistido por agentes de IA. APIs con NestJS y PostgreSQL/PostGIS, portales con Next.js, apps móviles con Expo y herramientas internas en Python y FastAPI desplegadas en AWS. Lidero la planeación técnica de proyectos, audito sistemas heredados para su modernización y reviso entregas de proveedores externos.</p>
+          <p class="timeline-note">Los sistemas son confidenciales; el detalle técnico está en la sección de stack.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <span class="timeline-date">Sep 2024 — Abr 2026</span>
+        <div class="timeline-dot"></div>
+        <div class="timeline-body">
+          <p class="timeline-role">Desarrollador de Software · Angular y TypeScript</p>
+          <p class="timeline-company">IntegraMed</p>
+          <p class="timeline-desc">Desarrollo y mantenimiento de aplicaciones web para el sector salud. Componentes reutilizables, consumo de APIs REST, diseño responsivo y trabajo en equipo con GitFlow.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <span class="timeline-date">2023 — Presente</span>
+        <div class="timeline-dot"></div>
+        <div class="timeline-body">
+          <p class="timeline-role">Desarrollador independiente</p>
+          <p class="timeline-company">Productos propios y clientes</p>
+          <p class="timeline-desc">Diseño, construyo y opero productos completos: SheepMaster, VetSys Pro y Pañuelo sin efecto, además de sitios para negocios locales. Me encargo de todo el ciclo, desde el levantamiento de requisitos hasta el despliegue y el soporte.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <span class="timeline-date">Abr 2022 — Mar 2023</span>
+        <div class="timeline-dot"></div>
+        <div class="timeline-body">
+          <p class="timeline-role">Auxiliar de Informática</p>
+          <p class="timeline-company">Gobierno del Estado de Hidalgo</p>
+          <p class="timeline-desc">Soporte técnico, mantenimiento de bases de datos y capacitación de usuarios.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-reveal>
+        <span class="timeline-date">Formación</span>
+        <div class="timeline-dot"></div>
+        <div class="timeline-body">
+          <p class="timeline-role">Ingeniería de Software</p>
+          <p class="timeline-company">Universidad Digital del Estado de Hidalgo (UNIDEH)</p>
         </div>
       </div>
 
     </div>
+
+    <ul class="learn-list" data-reveal>
+      <li class="learn-title">Formación continua</li>
+      <li>Ingeniería de prompts: para la vida real<span>DevTalles · 2026</span></li>
+      <li>Obsidian: tu segundo cerebro con IA<span>Hola Mundo · 2026</span></li>
+      <li>Ultimate Python: de cero a programador experto<span>Udemy · 2026</span></li>
+      <li>Build with AI 2026<span>Google Developer Groups · asistente</span></li>
+      <li>SQL Programming (MySQL)<span>Udemy · 2025</span></li>
+      <li>TypeScript: Complete Guide<span>DevTalles · 2024</span></li>
+    </ul>
   </div>
 </section>
 
 <!-- CONTACT / FOOTER -->
 <footer class="footer-section" id="contact">
-  <h2 class="footer-title" data-aos="fade-up">¿Trabajamos juntos?</h2>
-  <p class="footer-sub" data-aos="fade-up" data-aos-delay="50">
-    Estoy disponible para proyectos freelance, colaboraciones y nuevas oportunidades.
+  <h2 class="footer-title" data-reveal>¿Trabajamos juntos?</h2>
+  <p class="footer-sub" data-reveal>
+    Disponible para proyectos freelance, colaboraciones y nuevas oportunidades. Lo más rápido es escribirme por correo.
   </p>
-  <div class="footer-ctas" data-aos="fade-up" data-aos-delay="100">
-    <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio-2351871b1/" target="_blank" class="btn btn-primary">
-      Conectar en LinkedIn
-    </a>
-    <a href="mailto:danielhrubio3@gmail.com" class="btn btn-secondary">
-      📩 danielhrubio3@gmail.com
-    </a>
+  <div class="footer-ctas" data-reveal>
+    <a href="mailto:danielhrubio3@gmail.com" class="btn btn-primary">danielhrubio3@gmail.com</a>
+    <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+    <a href="https://github.com/DanielHR3" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
     <a href="cv.html" class="btn btn-secondary">CV (Español)</a>
-    <a href="cv-en.html" class="btn btn-secondary" style="border-color: rgba(139,92,246,0.3); color: #a78bfa;">CV (English)</a>
-    <a href="https://github.com/DanielHR3" target="_blank" class="btn btn-secondary">
-      Ver GitHub
-    </a>
+    <a href="cv-en.html" class="btn btn-secondary">CV (English)</a>
   </div>
-  <p class="footer-copy">© 2026 Daniel Hernández Rubio — Diseñado y construido con 🌿</p>
+  <p class="footer-copy">© 2026 Daniel Hernández Rubio</p>
 </footer>
 
 </div><!-- /wrapper -->
 
-<!-- AOS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init({ once: true, duration: 700, offset: 60 });
+  (function () {
+    var items = document.querySelectorAll('[data-reveal]');
+    if (!('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el) { io.observe(el); });
+  })();
 </script>
 </body>
 </html>

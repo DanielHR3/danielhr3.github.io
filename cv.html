@@ -172,11 +172,11 @@
             background: var(--border);
         }
 
-        .experience-item, .project-item { margin-bottom: 1.8rem; }
+        .experience-item, .project-item { margin-bottom: 1.8rem; break-inside: avoid; }
         .exp-header, .proj-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }
         .exp-role, .proj-name { font-weight: 700; font-size: 1rem; }
         .exp-company, .proj-stack { font-weight: 500; color: var(--accent); font-size: 0.85rem; }
-        .exp-date { font-size: 0.8rem; color: var(--text-muted); }
+        .exp-date { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; margin-left: 1rem; }
         .exp-desc, .proj-desc { font-size: 0.88rem; color: var(--text-muted); list-style-position: inside; }
         .exp-desc li { margin-bottom: 0.3rem; }
 
@@ -225,31 +225,40 @@
                     <li class="contact-item">📍 Pachuca, Hidalgo, MX</li>
                     <li class="contact-item">🔗 <a href="https://danielhr3.github.io" target="_blank">danielhr3.github.io</a></li>
                     <li class="contact-item">🐙 <a href="https://github.com/DanielHR3" target="_blank">github.com/DanielHR3</a></li>
-                    <li class="contact-item">💼 <a href="https://linkedin.com/in/danielhernandezrubio" target="_blank">in/danielhernandezrubio</a></li>
+                    <li class="contact-item">💼 <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/" target="_blank" rel="noopener">in/daniel-hernández-rubio</a></li>
                 </ul>
             </div>
 
             <div>
                 <h3 class="sidebar-section-title">Tecnologías</h3>
                 <div class="skills-group">
-                    <span class="skill-tag">Go (Golang)</span>
-                    <span class="skill-tag">Next.js 15</span>
-                    <span class="skill-tag">NestJS</span>
-                    <span class="skill-tag">Prisma ORM</span>
-                    <span class="skill-tag">PostgreSQL</span>
-                    <span class="skill-tag">Angular</span>
                     <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">n8n (Automatización)</span>
-                    <span class="skill-tag">OpenAI / Whisper</span>
-                    <span class="skill-tag">Git &amp; Docker</span>
+                    <span class="skill-tag">Next.js / React</span>
+                    <span class="skill-tag">NestJS</span>
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">Go</span>
+                    <span class="skill-tag">Python / FastAPI</span>
+                    <span class="skill-tag">PostgreSQL / PostGIS</span>
+                    <span class="skill-tag">Prisma</span>
+                    <span class="skill-tag">Expo / React Native</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Google Cloud Run</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">GitHub Actions</span>
+                    <span class="skill-tag">Claude Code</span>
+                    <span class="skill-tag">n8n</span>
                 </div>
             </div>
 
             <div>
                 <h3 class="sidebar-section-title">Certificaciones</h3>
                 <div class="cert-item">
-                    <div class="cert-title">Modern PHP (MySQL & Postman)</div>
-                    <div class="cert-meta">Udemy · 2025</div>
+                    <div class="cert-title">Ingeniería de prompts: para la vida real</div>
+                    <div class="cert-meta">DevTalles · 2026</div>
+                </div>
+                <div class="cert-item">
+                    <div class="cert-title">Ultimate Python: de cero a experto</div>
+                    <div class="cert-meta">Udemy · 2026</div>
                 </div>
                 <div class="cert-item">
                     <div class="cert-title">SQL Programming (MySQL)</div>
@@ -258,10 +267,6 @@
                 <div class="cert-item">
                     <div class="cert-title">TypeScript: Complete Guide</div>
                     <div class="cert-meta">DevTalles · 2024</div>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-title">Frontend Certification</div>
-                    <div class="cert-meta">Alura LATAM · 2023</div>
                 </div>
             </div>
 
@@ -282,41 +287,63 @@
         <main class="main-content">
              <header class="header">
                 <h1>Daniel <br>Hernández R.</h1>
-                <h2>Software Engineer / Agrotech Developer</h2>
+                <h2>Ingeniero de Software Fullstack</h2>
             </header>
 
              <section>
                 <p class="summary">
-                    Ingeniero de Software y Desarrollador Agrotech / Fullstack. Especializado en el desarrollo de plataformas web modernas (Next.js, NestJS, Angular), arquitecturas offline-first (Go, Wails, SQLite) e integración de flujos de Inteligencia Artificial (OpenAI, Whisper, n8n) para la automatización industrial y agropecuaria.
+                    Ingeniero de software fullstack. Construyo productos web, móviles y de escritorio offline-first con TypeScript (Next.js, NestJS, Angular), Go y Python sobre PostgreSQL/PostGIS, y los despliego en AWS y Google Cloud. Trabajo con desarrollo asistido por agentes de IA: historias de usuario, contrato OpenAPI, pruebas automatizadas y revisión humana de cada cambio.
                 </p>
             </section>
 
             <section>
                 <h3 class="section-title">Experiencia Profesional</h3>
-                
+
                 <div class="experience-item">
                     <div class="exp-header">
-                        <span class="exp-role">IT Assistant</span>
-                        <span class="exp-date">Abr 2022 — Mar 2023</span>
+                        <span class="exp-role">Ingeniero de Software</span>
+                        <span class="exp-date">Abr 2026 — Presente</span>
                     </div>
                     <div class="exp-company">Gobierno del Estado de Hidalgo</div>
                     <ul class="exp-desc">
-                        <li>Administración de sistemas institucionales y soporte técnico de nivel 1 y 2.</li>
-                        <li>Mantenimiento y gestión de bases de datos planas para registros operativos.</li>
-                        <li>Capacitación de usuarios finales y mejora de flujos operativos del departamento.</li>
+                        <li>Desarrollo de software institucional: APIs con NestJS y PostgreSQL/PostGIS, portales con Next.js, apps móviles con Expo y herramientas internas en Python y FastAPI.</li>
+                        <li>Despliegue en AWS (CloudFront, S3, EC2, RDS) y CI/CD con GitHub Actions.</li>
+                        <li>Planeación técnica de proyectos, auditoría de sistemas heredados y revisión de entregas de proveedores.</li>
                     </ul>
                 </div>
 
                 <div class="experience-item">
                     <div class="exp-header">
-                        <span class="exp-role">Freelance Developer</span>
+                        <span class="exp-role">Desarrollador de Software · Angular y TypeScript</span>
+                        <span class="exp-date">Sep 2024 — Abr 2026</span>
+                    </div>
+                    <div class="exp-company">IntegraMed</div>
+                    <ul class="exp-desc">
+                        <li>Desarrollo y mantenimiento de aplicaciones web para el sector salud.</li>
+                        <li>Componentes reutilizables, consumo de APIs REST y trabajo en equipo con GitFlow.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Desarrollador independiente</span>
                         <span class="exp-date">Ene 2023 — Presente</span>
                     </div>
-                    <div class="exp-company">Proyectos Independientes</div>
+                    <div class="exp-company">Productos propios y clientes</div>
                     <ul class="exp-desc">
-                        <li>Desarrollo de soluciones web y de escritorio personalizadas para PYMES.</li>
-                        <li>Integración de APIs de terceros y gestión de bases de datos locales/cloud.</li>
-                        <li>Migración de sistemas legados a tecnologías modernas (React/Angular).</li>
+                        <li>Productos propios en producción: SheepMaster, VetSys Pro y Pañuelo sin efecto.</li>
+                        <li>Sitios y sistemas a la medida para negocios locales, del levantamiento de requisitos al despliegue.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-header">
+                        <span class="exp-role">Auxiliar de Informática</span>
+                        <span class="exp-date">Abr 2022 — Mar 2023</span>
+                    </div>
+                    <div class="exp-company">Gobierno del Estado de Hidalgo</div>
+                    <ul class="exp-desc">
+                        <li>Soporte técnico, mantenimiento de bases de datos y capacitación de usuarios.</li>
                     </ul>
                 </div>
             </section>
@@ -326,34 +353,34 @@
 
                 <div class="project-item">
                     <div class="proj-header">
-                        <span class="proj-name">JARVIS — Agrotech AI Platform</span>
-                        <span class="proj-stack">Next.js 15 / NestJS / PostgreSQL / OpenAI Whisper</span>
+                        <span class="proj-name">Pañuelo sin efecto</span>
+                        <span class="proj-stack">Next.js / NestJS / Prisma / PostgreSQL</span>
                     </div>
-                    <p class="proj-desc">Nodo central de inteligencia agropecuaria. Integra inventario de SheepMaster, transcripción de voz de campo vía Whisper, y webhooks con n8n para sincronizar notas de Obsidian.</p>
+                    <p class="proj-desc">PWA offline-first para arbitraje y gestión de ligas de flag football. Marcador reconstruido con event sourcing, sincronización al reconectar y CI/CD con GitHub Actions. En producción.</p>
                 </div>
 
                 <div class="project-item">
                     <div class="proj-header">
                         <span class="proj-name">SheepMaster</span>
-                        <span class="proj-stack">Go (Golang) / Wails v2 / React / SQLite</span>
+                        <span class="proj-stack">Go / Wails v2 / React / SQLite / Supabase</span>
                     </div>
-                    <p class="proj-desc">Software híbrido Offline-First para control de peso (GDP), reproducción y tratamientos médicos de ganado ovino. Diseñado para trabajar en corrales sin internet.</p>
+                    <p class="proj-desc">Gestión de hato ovino en escritorio y PWA. Trabaja contra SQLite local y sincroniza a la nube con una cola de salida cuando hay internet. En producción.</p>
                 </div>
 
                 <div class="project-item">
                     <div class="proj-header">
-                        <span class="proj-name">EcoConnect</span>
-                        <span class="proj-stack">Angular / NestJS / MySQL / OpenAI API</span>
+                        <span class="proj-name">VetSys Pro</span>
+                        <span class="proj-stack">Next.js / FastAPI / PostgreSQL</span>
                     </div>
-                    <p class="proj-desc">Aplicación web que genera y automatiza reportes de impacto sostenible para PYMES utilizando modelos de lenguaje (OpenAI).</p>
+                    <p class="proj-desc">SaaS multi-tenant para clínicas veterinarias: expedientes, citas, inventario y ventas, con aislamiento por clínica y validación de suscripción en la API.</p>
                 </div>
 
                 <div class="project-item">
                     <div class="proj-header">
-                        <span class="proj-name">U CHIICH</span>
-                        <span class="proj-stack">Angular / TypeScript / SCSS</span>
+                        <span class="proj-name">OrtoKids</span>
+                        <span class="proj-stack">React 19 / TypeScript / Firebase</span>
                     </div>
-                    <p class="proj-desc">Sitio web empresarial para marca de gastronomía tradicional mexicana. Enfoque en experiencia de usuario interactiva y optimización SEO.</p>
+                    <p class="proj-desc">Sitio con formulario de citas para un consultorio dental. Cliente, en producción.</p>
                 </div>
             </section>
 
