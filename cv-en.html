@@ -94,6 +94,19 @@
             .row .r { white-space: normal; }
         }
 
+
+        /* Versión de una página: ?corto=1 oculta lo opcional y compacta */
+        .short { font-size: 9.2pt; line-height: 1.22; }
+        .short .opt { display: none !important; }
+        .short .only-short { display: block; }
+        .only-short { display: none; }
+        .short h1 { font-size: 18pt; }
+        .short h2 { margin: 0.4rem 0 0.2rem; font-size: 10.2pt; }
+        .short .entry { margin-bottom: 0.3rem; }
+        .short li { margin-bottom: 0.04rem; }
+        .short .page { padding: 0.5in 0.6in; }
+        @media print { .short .page { padding: 0; } }
+
         @media print {
             html { background: #fff; }
             .toolbar { display: none; }
@@ -107,6 +120,7 @@
 <nav class="toolbar">
     <a href="index.html">← Back to portfolio</a>
     <a href="cv.html">Versión en español</a>
+    <a href="cv-en.html?short=1" id="short-link" data-full="Full version (2 pages)">One-page version</a>
     <button type="button" onclick="window.print()">Download PDF / Print</button>
 </nav>
 
@@ -137,7 +151,7 @@
             <div class="row"><span class="role">Software Engineer</span><span class="r">Apr 2026 – Present</span></div>
             <ul>
                 <li>Develop institutional software under an AI-agent-assisted framework: APIs with NestJS and PostgreSQL/PostGIS, portals with Next.js, mobile apps with Expo and internal tools in Python and FastAPI.</li>
-                <li>Deploy on AWS (CloudFront, S3, EC2, RDS, SES) with CI/CD on GitHub Actions, locked-down security groups and encrypted storage.</li>
+                <li class="opt">Deploy on AWS (CloudFront, S3, EC2, RDS, SES) with CI/CD on GitHub Actions, locked-down security groups and encrypted storage.</li>
                 <li>Lead technical project planning, audit legacy systems for modernization and review deliveries from external vendors.</li>
             </ul>
         </div>
@@ -147,7 +161,7 @@
             <div class="row"><span class="role">Software Developer (Angular and TypeScript)</span><span class="r">Sep 2024 – Apr 2026</span></div>
             <ul>
                 <li>Developed and maintained web applications for the healthcare sector with Angular and TypeScript.</li>
-                <li>Built reusable components, integrated REST APIs and delivered responsive interfaces in a GitFlow team workflow.</li>
+                <li class="opt">Built reusable components, integrated REST APIs and delivered responsive interfaces in a GitFlow team workflow.</li>
             </ul>
         </div>
 
@@ -156,7 +170,7 @@
             <div class="row"><span class="role">Own products and clients</span><span class="r">Jan 2023 – Present</span></div>
             <ul>
                 <li>Design, build and operate three products in production: SheepMaster, VetSys Pro and Pañuelo sin efecto.</li>
-                <li>Deliver custom sites and systems for local businesses, from requirements through deployment and support.</li>
+                <li class="opt">Deliver custom sites and systems for local businesses, from requirements through deployment and support.</li>
             </ul>
         </div>
 
@@ -176,7 +190,7 @@
             <div class="row"><span class="org">Pañuelo sin efecto</span><span class="r">Next.js, NestJS, Prisma, PostgreSQL</span></div>
             <ul>
                 <li>Offline-first PWA for refereeing and managing flag football leagues; plays are stored in IndexedDB and synced on reconnect.</li>
-                <li>Event-sourced scoreboard so every match is auditable. CI/CD with Docker and GitHub Actions. In production.</li>
+                <li class="opt">Event-sourced scoreboard so every match is auditable. CI/CD with Docker and GitHub Actions. In production.</li>
             </ul>
         </div>
 
@@ -184,7 +198,7 @@
             <div class="row"><span class="org">SheepMaster</span><span class="r">Go, Wails v2, React, SQLite, Supabase</span></div>
             <ul>
                 <li>Sheep herd management for desktop and PWA: weighing, breeding, treatments and pedigree.</li>
-                <li>Offline sync engine with an outbox queue and retries to the cloud. In production.</li>
+                <li class="opt">Offline sync engine with an outbox queue and retries to the cloud. In production.</li>
             </ul>
         </div>
 
@@ -195,7 +209,7 @@
             </ul>
         </div>
 
-        <div class="entry">
+        <div class="entry opt">
             <div class="row"><span class="org">OrtoKids</span><span class="r">React 19, TypeScript, Firebase</span></div>
             <ul>
                 <li>Website with an appointment form for a dental practice. Client work, in production.</li>
@@ -221,26 +235,37 @@
         <p><b>Cloud and DevOps:</b> AWS (CloudFront, S3, EC2, RDS, SES), Google Cloud Run, Firebase, Docker, GitHub Actions, MinIO</p>
         <p><b>AI and agents:</b> Claude Code, Gemini CLI, OpenAI, Gemini and Claude APIs, RAG, LangChain, MCP, n8n</p>
         <p><b>Testing:</b> Jest, Supertest, Vitest, Playwright, pytest</p>
+    <p class="only-short"><b>Languages:</b> Spanish (native), English (basic / technical)</p>
     </section>
 
     <section>
         <h2>Certifications and courses</h2>
         <div class="entry">
             <div class="row"><span>Prompt Engineering for Real Life, DevTalles</span><span class="r">2026</span></div>
-            <div class="row"><span>Obsidian: Your Second Brain with AI, Hola Mundo</span><span class="r">2026</span></div>
+            <div class="row opt"><span>Obsidian: Your Second Brain with AI, Hola Mundo</span><span class="r">2026</span></div>
             <div class="row"><span>Ultimate Python: Zero to Expert, Udemy</span><span class="r">2026</span></div>
-            <div class="row"><span>Build with AI 2026, Google Developer Groups (attendee)</span><span class="r">2026</span></div>
-            <div class="row"><span>SQL Programming (MySQL), Udemy</span><span class="r">2025</span></div>
+            <div class="row opt"><span>Build with AI 2026, Google Developer Groups (attendee)</span><span class="r">2026</span></div>
+            <div class="row opt"><span>SQL Programming (MySQL), Udemy</span><span class="r">2025</span></div>
             <div class="row"><span>TypeScript: Complete Guide, DevTalles</span><span class="r">2024</span></div>
         </div>
     </section>
 
-    <section>
+    <section class="opt">
         <h2>Languages</h2>
         <p>Spanish (native), English (basic / technical)</p>
     </section>
 
 </main>
 
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search);
+    if (q.has('corto') || q.has('short')) {
+      document.body.classList.add('short');
+      var t = document.getElementById('short-link');
+      if (t) { t.textContent = t.getAttribute('data-full'); t.href = location.pathname; }
+    }
+  })();
+</script>
 </body>
 </html>

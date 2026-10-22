@@ -52,7 +52,8 @@ danielhr3.github.io/
 ├── assets/
 │   ├── profile.jpg     # Foto de perfil (+ profile.webp)
 │   ├── previews/       # Capturas de los proyectos (.webp)
-│   ├── CV-DanielHernandezRubio.pdf / CV-DanielHernandezRubio-EN.pdf
+│   ├── CV-DanielHernandezRubio.pdf / -EN.pdf / -1pag.pdf / -EN-1page.pdf
+│   ├── og.png / og.html        # tarjeta para redes (1200×630) y su fuente
 │   └── icons/          # SVG de tecnologías
 └── README.md
 ```
