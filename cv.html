@@ -4,397 +4,243 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV — Daniel Hernández Rubio</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
+    <meta name="description" content="Currículum de Daniel Hernández Rubio, Ingeniero de Software Fullstack.">
     <style>
-        :root {
-            --primary: #0a0a0a;
-            --accent: #6B8E23; /* Mismo color oliva del portfolio */
-            --accent-muted: rgba(107,142,35,0.1);
-            --text-main: #1a1a1a;
-            --text-muted: #555555;
-            --border: #eeeeee;
-            --bg-print: #ffffff;
-            --sidebar-bg: #f9f9f9;
-        }
+        /* Formato Harvard: una columna, sin foto ni color, encabezados estándar. Legible por ATS. */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @page { size: letter; margin: 0.6in 0.7in; }
 
+        html { background: #e9e9e9; }
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            color: var(--text-main);
-            background-color: #f0f0f0;
-            line-height: 1.5;
-            -webkit-print-color-adjust: exact;
+            font-family: Georgia, "Times New Roman", Times, serif;
+            font-size: 10.5pt;
+            line-height: 1.32;
+            color: #000;
         }
 
-        /* --- UI Elements (not in print) --- */
-        .no-print-nav {
-            background: #0a0a0a;
-            padding: 1rem;
+        .toolbar {
             display: flex;
+            gap: 0.5rem;
             justify-content: center;
-            gap: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            flex-wrap: wrap;
+            padding: 0.75rem;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 0.85rem;
         }
-        .btn-action {
-            padding: 0.6rem 1.2rem;
-            background: var(--accent);
-            color: white;
+        .toolbar a, .toolbar button {
+            font: inherit;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid #333;
+            background: #fff;
+            color: #000;
             text-decoration: none;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: opacity 0.2s;
             cursor: pointer;
-            border: none;
         }
-        .btn-action:hover { opacity: 0.9; }
-        .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
+        .toolbar button { background: #000; color: #fff; }
+
+        .page {
+            background: #fff;
+            width: 8.5in;
+            min-height: 11in;
+            margin: 0 auto 1.5rem;
+            padding: 0.6in 0.7in;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.15);
         }
 
-        /* --- CV Container --- */
-        .cv-page {
-            width: 210mm;
-            min-height: 297mm;
-            margin: 2rem auto;
-            background: white;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* --- Sidebar --- */
-        .sidebar {
-            background: var(--sidebar-bg);
-            padding: 2.5rem 1.5rem;
-            border-right: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .profile-pic {
-            width: 130px;
-            height: 130px;
-            border-radius: 12px;
-            background: #ddd;
-            margin-bottom: 0.5rem;
-            overflow: hidden;
-            border: 3px solid white;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        .profile-pic img { width: 100%; height: 100%; object-fit: cover; }
-
-        .sidebar-section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
+        header { text-align: center; margin-bottom: 0.55rem; }
+        h1 {
+            font-size: 20pt;
+            font-weight: bold;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid var(--accent-muted);
-            padding-bottom: 0.3rem;
-        }
-
-        .contact-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-        .contact-item { font-size: 0.82rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.6rem; }
-        .contact-item a { color: inherit; text-decoration: none; word-break: break-all; }
-        .contact-item i { font-size: 1rem; width: 20px; text-align: center; }
-
-        .skills-group { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-        .skill-tag {
-            font-size: 0.75rem;
-            background: white;
-            padding: 0.25rem 0.6rem;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            color: var(--text-main);
-        }
-
-        .cert-item { margin-bottom: 0.8rem; }
-        .cert-title { font-size: 0.8rem; font-weight: 600; color: var(--text-main); line-height: 1.2; }
-        .cert-meta { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
-
-        /* --- Main Content --- */
-        .main-content {
-            padding: 3rem 2.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
-        }
-
-        .header { margin-bottom: 1rem; }
-        .header h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2.8rem;
-            font-weight: 700;
             line-height: 1.1;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
         }
-        .header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.1rem;
-            color: var(--accent);
-            font-weight: 500;
-            letter-spacing: 0.05em;
+        .headline { font-size: 11pt; margin-top: 0.15rem; }
+        .contact { font-size: 9.5pt; margin-top: 0.3rem; }
+        .contact a { color: #000; text-decoration: none; }
+        .contact span + span::before { content: " | "; }
+
+        h2 {
+            font-size: 11pt;
+            font-weight: bold;
             text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid #000;
+            padding-bottom: 1px;
+            margin: 0.7rem 0 0.35rem;
         }
+        section > p { margin: 0 0 0.2rem; }
 
-        .summary { font-size: 0.95rem; color: var(--text-muted); text-align: justify; }
-
-        .section-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1.2rem;
+        .entry { margin-bottom: 0.45rem; break-inside: avoid; }
+        .row {
             display: flex;
-            align-items: center;
-            gap: 0.8rem;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
         }
-        .section-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: var(--border);
+        .row .r { white-space: nowrap; }
+        .org { font-weight: bold; }
+        .role { font-style: italic; }
+        ul { margin: 0.12rem 0 0 1.1rem; }
+        li { margin-bottom: 0.08rem; padding-left: 0.1rem; }
+
+        .skills p { margin-bottom: 0.1rem; }
+        .skills b { font-weight: bold; }
+
+        @media screen and (max-width: 9in) {
+            .page { width: 100%; min-height: 0; padding: 1.25rem 1rem; }
+            .row { flex-wrap: wrap; gap: 0 0.75rem; }
+            .row .r { white-space: normal; }
         }
 
-        .experience-item, .project-item { margin-bottom: 1.8rem; break-inside: avoid; }
-        .exp-header, .proj-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.4rem; }
-        .exp-role, .proj-name { font-weight: 700; font-size: 1rem; }
-        .exp-company, .proj-stack { font-weight: 500; color: var(--accent); font-size: 0.85rem; }
-        .exp-date { font-size: 0.8rem; color: var(--text-muted); white-space: nowrap; margin-left: 1rem; }
-        .exp-desc, .proj-desc { font-size: 0.88rem; color: var(--text-muted); list-style-position: inside; }
-        .exp-desc li { margin-bottom: 0.3rem; }
-
-        .education-item { margin-bottom: 1rem; }
-        .edu-school { font-weight: 700; font-size: 0.95rem; }
-        .edu-degree { font-size: 0.85rem; color: var(--text-muted); }
-        .edu-date { font-size: 0.8rem; color: var(--accent); }
-
-        /* --- PRINT STYLES --- */
         @media print {
-            @page { margin: 0; size: A4; }
-            body { background: white; margin: 0; }
-            .no-print-nav { display: none; }
-            .cv-page { margin: 0; width: 100%; height: 100%; box-shadow: none; border: none; }
-            .sidebar { background: #f5f5f5 !important; }
-            .sidebar-section-title { color: #556b2f !important; border-bottom: 1px solid #ddd !important; }
-            .header h2, .exp-company, .proj-stack, .edu-date { color: #556b2f !important; }
-        }
-
-        /* Responsive UI (only for web view) */
-        @media (max-width: 800px) {
-            .cv-page { width: 95%; grid-template-columns: 1fr; }
-            .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+            html { background: #fff; }
+            .toolbar { display: none; }
+            .page { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
+            a { color: #000; }
         }
     </style>
 </head>
 <body>
 
-    <div class="no-print-nav">
-        <a href="index.html" class="btn-action btn-outline">← Volver al Portfolio</a>
-        <a href="cv-en.html" class="btn-action btn-outline">English Version</a>
-        <button onclick="window.print()" class="btn-action">Descargar PDF / Imprimir</button>
-    </div>
+<nav class="toolbar">
+    <a href="index.html">← Volver al portafolio</a>
+    <a href="cv-en.html">English version</a>
+    <button type="button" onclick="window.print()">Descargar PDF / Imprimir</button>
+</nav>
 
-    <div class="cv-page">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="profile-pic">
-                <img src="assets/profile.jpg" alt="Daniel Hernández Rubio">
-            </div>
+<main class="page">
 
-            <div>
-                <h3 class="sidebar-section-title">Contacto</h3>
-                <ul class="contact-list">
-                    <li class="contact-item">📧 <a href="mailto:danielhrubio3@gmail.com">danielhrubio3@gmail.com</a></li>
-                    <li class="contact-item">📍 Pachuca, Hidalgo, MX</li>
-                    <li class="contact-item">🔗 <a href="https://danielhr3.github.io" target="_blank">danielhr3.github.io</a></li>
-                    <li class="contact-item">🐙 <a href="https://github.com/DanielHR3" target="_blank">github.com/DanielHR3</a></li>
-                    <li class="contact-item">💼 <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/" target="_blank" rel="noopener">in/daniel-hernández-rubio</a></li>
-                </ul>
-            </div>
+    <header>
+        <h1>Daniel Hernández Rubio</h1>
+        <p class="headline">Ingeniero de Software Fullstack</p>
+        <p class="contact">
+            <span>Pachuca, Hidalgo, México</span>
+            <span><a href="mailto:danielhrubio3@gmail.com">danielhrubio3@gmail.com</a></span>
+            <span><a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/">linkedin.com/in/daniel-hernández-rubio</a></span>
+            <span><a href="https://github.com/DanielHR3">github.com/DanielHR3</a></span>
+            <span><a href="https://danielhr3.github.io">danielhr3.github.io</a></span>
+        </p>
+    </header>
 
-            <div>
-                <h3 class="sidebar-section-title">Tecnologías</h3>
-                <div class="skills-group">
-                    <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">Next.js / React</span>
-                    <span class="skill-tag">NestJS</span>
-                    <span class="skill-tag">Angular</span>
-                    <span class="skill-tag">Go</span>
-                    <span class="skill-tag">Python / FastAPI</span>
-                    <span class="skill-tag">PostgreSQL / PostGIS</span>
-                    <span class="skill-tag">Prisma</span>
-                    <span class="skill-tag">Expo / React Native</span>
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">Google Cloud Run</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">GitHub Actions</span>
-                    <span class="skill-tag">Claude Code</span>
-                    <span class="skill-tag">n8n</span>
-                </div>
-            </div>
+    <section>
+        <h2>Resumen profesional</h2>
+        <p>Ingeniero de software fullstack con experiencia en productos web, móviles y de escritorio offline-first. Trabajo con TypeScript de punta a punta (Next.js, NestJS, Angular), Go y Python sobre PostgreSQL/PostGIS, y despliego en AWS y Google Cloud. Aplico desarrollo asistido por agentes de IA con historias de usuario, contrato OpenAPI, pruebas automatizadas y revisión humana de cada cambio. Tres productos propios en producción.</p>
+    </section>
 
-            <div>
-                <h3 class="sidebar-section-title">Certificaciones</h3>
-                <div class="cert-item">
-                    <div class="cert-title">Ingeniería de prompts: para la vida real</div>
-                    <div class="cert-meta">DevTalles · 2026</div>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-title">Ultimate Python: de cero a experto</div>
-                    <div class="cert-meta">Udemy · 2026</div>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-title">SQL Programming (MySQL)</div>
-                    <div class="cert-meta">Udemy · 2025</div>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-title">TypeScript: Complete Guide</div>
-                    <div class="cert-meta">DevTalles · 2024</div>
-                </div>
-            </div>
+    <section>
+        <h2>Experiencia profesional</h2>
 
-            <div>
-                <h3 class="sidebar-section-title">Idiomas</h3>
-                <div class="cert-item">
-                    <div class="cert-title">Español</div>
-                    <div class="cert-meta">Nativo</div>
-                </div>
-                <div class="cert-item">
-                    <div class="cert-title">Inglés</div>
-                    <div class="cert-meta">Básico / Técnico</div>
-                </div>
-            </div>
-        </aside>
+        <div class="entry">
+            <div class="row"><span class="org">Gobierno del Estado de Hidalgo</span><span class="r">Pachuca, Hidalgo</span></div>
+            <div class="row"><span class="role">Ingeniero de Software</span><span class="r">Abr 2026 – Presente</span></div>
+            <ul>
+                <li>Desarrollo software institucional bajo un marco de desarrollo asistido por agentes de IA: APIs con NestJS y PostgreSQL/PostGIS, portales con Next.js, aplicaciones móviles con Expo y herramientas internas en Python y FastAPI.</li>
+                <li>Despliego en AWS (CloudFront, S3, EC2, RDS, SES) con CI/CD en GitHub Actions, grupos de seguridad cerrados y almacenamiento cifrado.</li>
+                <li>Lidero la planeación técnica de proyectos, audito sistemas heredados para su modernización y reviso entregas de proveedores externos.</li>
+            </ul>
+        </div>
 
-        <!-- Main Content -->
-        <main class="main-content">
-             <header class="header">
-                <h1>Daniel <br>Hernández R.</h1>
-                <h2>Ingeniero de Software Fullstack</h2>
-            </header>
+        <div class="entry">
+            <div class="row"><span class="org">IntegraMed</span><span class="r">Pachuca, Hidalgo</span></div>
+            <div class="row"><span class="role">Desarrollador de Software (Angular y TypeScript)</span><span class="r">Sep 2024 – Abr 2026</span></div>
+            <ul>
+                <li>Desarrollé y mantuve aplicaciones web para el sector salud con Angular y TypeScript.</li>
+                <li>Construí componentes reutilizables, integré APIs REST y entregué interfaces responsivas trabajando en equipo con GitFlow.</li>
+            </ul>
+        </div>
 
-             <section>
-                <p class="summary">
-                    Ingeniero de software fullstack. Construyo productos web, móviles y de escritorio offline-first con TypeScript (Next.js, NestJS, Angular), Go y Python sobre PostgreSQL/PostGIS, y los despliego en AWS y Google Cloud. Trabajo con desarrollo asistido por agentes de IA: historias de usuario, contrato OpenAPI, pruebas automatizadas y revisión humana de cada cambio.
-                </p>
-            </section>
+        <div class="entry">
+            <div class="row"><span class="org">Desarrollador independiente</span><span class="r">Remoto</span></div>
+            <div class="row"><span class="role">Productos propios y clientes</span><span class="r">Ene 2023 – Presente</span></div>
+            <ul>
+                <li>Diseño, construyo y opero tres productos en producción: SheepMaster, VetSys Pro y Pañuelo sin efecto.</li>
+                <li>Entrego sitios y sistemas a la medida para negocios locales, del levantamiento de requisitos al despliegue y soporte.</li>
+            </ul>
+        </div>
 
-            <section>
-                <h3 class="section-title">Experiencia Profesional</h3>
+        <div class="entry">
+            <div class="row"><span class="org">Gobierno del Estado de Hidalgo</span><span class="r">Pachuca, Hidalgo</span></div>
+            <div class="row"><span class="role">Auxiliar de Informática</span><span class="r">Abr 2022 – Mar 2023</span></div>
+            <ul>
+                <li>Brindé soporte técnico, mantuve bases de datos y capacité a usuarios finales.</li>
+            </ul>
+        </div>
+    </section>
 
-                <div class="experience-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Ingeniero de Software</span>
-                        <span class="exp-date">Abr 2026 — Presente</span>
-                    </div>
-                    <div class="exp-company">Gobierno del Estado de Hidalgo</div>
-                    <ul class="exp-desc">
-                        <li>Desarrollo de software institucional: APIs con NestJS y PostgreSQL/PostGIS, portales con Next.js, apps móviles con Expo y herramientas internas en Python y FastAPI.</li>
-                        <li>Despliegue en AWS (CloudFront, S3, EC2, RDS) y CI/CD con GitHub Actions.</li>
-                        <li>Planeación técnica de proyectos, auditoría de sistemas heredados y revisión de entregas de proveedores.</li>
-                    </ul>
-                </div>
+    <section>
+        <h2>Proyectos</h2>
 
-                <div class="experience-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Desarrollador de Software · Angular y TypeScript</span>
-                        <span class="exp-date">Sep 2024 — Abr 2026</span>
-                    </div>
-                    <div class="exp-company">IntegraMed</div>
-                    <ul class="exp-desc">
-                        <li>Desarrollo y mantenimiento de aplicaciones web para el sector salud.</li>
-                        <li>Componentes reutilizables, consumo de APIs REST y trabajo en equipo con GitFlow.</li>
-                    </ul>
-                </div>
+        <div class="entry">
+            <div class="row"><span class="org">Pañuelo sin efecto</span><span class="r">Next.js, NestJS, Prisma, PostgreSQL</span></div>
+            <ul>
+                <li>PWA offline-first para arbitraje y gestión de ligas de flag football; las jugadas se guardan en IndexedDB y se sincronizan al reconectar.</li>
+                <li>Marcador reconstruido con event sourcing para que cada partido sea auditable. CI/CD con Docker y GitHub Actions. En producción.</li>
+            </ul>
+        </div>
 
-                <div class="experience-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Desarrollador independiente</span>
-                        <span class="exp-date">Ene 2023 — Presente</span>
-                    </div>
-                    <div class="exp-company">Productos propios y clientes</div>
-                    <ul class="exp-desc">
-                        <li>Productos propios en producción: SheepMaster, VetSys Pro y Pañuelo sin efecto.</li>
-                        <li>Sitios y sistemas a la medida para negocios locales, del levantamiento de requisitos al despliegue.</li>
-                    </ul>
-                </div>
+        <div class="entry">
+            <div class="row"><span class="org">SheepMaster</span><span class="r">Go, Wails v2, React, SQLite, Supabase</span></div>
+            <ul>
+                <li>Gestión de hato ovino en escritorio y PWA: pesajes, reproducción, tratamientos y genealogía.</li>
+                <li>Motor de sincronización offline con cola de salida y reintentos hacia la nube. En producción.</li>
+            </ul>
+        </div>
 
-                <div class="experience-item">
-                    <div class="exp-header">
-                        <span class="exp-role">Auxiliar de Informática</span>
-                        <span class="exp-date">Abr 2022 — Mar 2023</span>
-                    </div>
-                    <div class="exp-company">Gobierno del Estado de Hidalgo</div>
-                    <ul class="exp-desc">
-                        <li>Soporte técnico, mantenimiento de bases de datos y capacitación de usuarios.</li>
-                    </ul>
-                </div>
-            </section>
+        <div class="entry">
+            <div class="row"><span class="org">VetSys Pro</span><span class="r">Next.js, FastAPI, PostgreSQL, Cloud Run</span></div>
+            <ul>
+                <li>SaaS multi-tenant para clínicas veterinarias: expedientes, citas, inventario y ventas, con aislamiento por clínica y validación de suscripción en cada petición.</li>
+            </ul>
+        </div>
 
-            <section>
-                <h3 class="section-title">Proyectos Destacados</h3>
+        <div class="entry">
+            <div class="row"><span class="org">OrtoKids</span><span class="r">React 19, TypeScript, Firebase</span></div>
+            <ul>
+                <li>Sitio con formulario de citas para un consultorio dental. Trabajo para cliente, en producción.</li>
+            </ul>
+        </div>
+    </section>
 
-                <div class="project-item">
-                    <div class="proj-header">
-                        <span class="proj-name">Pañuelo sin efecto</span>
-                        <span class="proj-stack">Next.js / NestJS / Prisma / PostgreSQL</span>
-                    </div>
-                    <p class="proj-desc">PWA offline-first para arbitraje y gestión de ligas de flag football. Marcador reconstruido con event sourcing, sincronización al reconectar y CI/CD con GitHub Actions. En producción.</p>
-                </div>
+    <section>
+        <h2>Formación académica</h2>
+        <div class="entry">
+            <div class="row"><span class="org">Universidad Digital del Estado de Hidalgo (UNIDEH)</span><span class="r">Hidalgo, México</span></div>
+            <div class="row"><span class="role">Ingeniería de Software</span><span class="r">Finalizada</span></div>
+        </div>
+    </section>
 
-                <div class="project-item">
-                    <div class="proj-header">
-                        <span class="proj-name">SheepMaster</span>
-                        <span class="proj-stack">Go / Wails v2 / React / SQLite / Supabase</span>
-                    </div>
-                    <p class="proj-desc">Gestión de hato ovino en escritorio y PWA. Trabaja contra SQLite local y sincroniza a la nube con una cola de salida cuando hay internet. En producción.</p>
-                </div>
+    <section class="skills">
+        <h2>Habilidades técnicas</h2>
+        <p><b>Lenguajes:</b> TypeScript, JavaScript, Go, Python, SQL</p>
+        <p><b>Frontend:</b> Next.js, React 19, Angular, Tailwind CSS, TanStack Query, shadcn/ui, PWA</p>
+        <p><b>Backend:</b> NestJS, FastAPI, Prisma, TypeORM, SQLAlchemy, OpenAPI/Swagger, JWT</p>
+        <p><b>Datos:</b> PostgreSQL, PostGIS, SQLite, IndexedDB, MySQL, Supabase, Neon</p>
+        <p><b>Móvil y escritorio:</b> Expo, React Native, Wails, Leaflet, OpenLayers, Mapbox</p>
+        <p><b>Cloud y DevOps:</b> AWS (CloudFront, S3, EC2, RDS, SES), Google Cloud Run, Firebase, Docker, GitHub Actions, MinIO</p>
+        <p><b>IA y agentes:</b> Claude Code, Gemini CLI, APIs de OpenAI, Gemini y Claude, RAG, LangChain, MCP, n8n</p>
+        <p><b>Pruebas:</b> Jest, Supertest, Vitest, Playwright, pytest</p>
+    </section>
 
-                <div class="project-item">
-                    <div class="proj-header">
-                        <span class="proj-name">VetSys Pro</span>
-                        <span class="proj-stack">Next.js / FastAPI / PostgreSQL</span>
-                    </div>
-                    <p class="proj-desc">SaaS multi-tenant para clínicas veterinarias: expedientes, citas, inventario y ventas, con aislamiento por clínica y validación de suscripción en la API.</p>
-                </div>
+    <section>
+        <h2>Certificaciones y cursos</h2>
+        <div class="entry">
+            <div class="row"><span>Ingeniería de prompts: para la vida real, DevTalles</span><span class="r">2026</span></div>
+            <div class="row"><span>Obsidian: tu segundo cerebro con IA, Hola Mundo</span><span class="r">2026</span></div>
+            <div class="row"><span>Ultimate Python: de cero a programador experto, Udemy</span><span class="r">2026</span></div>
+            <div class="row"><span>Build with AI 2026, Google Developer Groups (asistente)</span><span class="r">2026</span></div>
+            <div class="row"><span>SQL Programming (MySQL), Udemy</span><span class="r">2025</span></div>
+            <div class="row"><span>TypeScript: Complete Guide, DevTalles</span><span class="r">2024</span></div>
+        </div>
+    </section>
 
-                <div class="project-item">
-                    <div class="proj-header">
-                        <span class="proj-name">OrtoKids</span>
-                        <span class="proj-stack">React 19 / TypeScript / Firebase</span>
-                    </div>
-                    <p class="proj-desc">Sitio con formulario de citas para un consultorio dental. Cliente, en producción.</p>
-                </div>
-            </section>
+    <section>
+        <h2>Idiomas</h2>
+        <p>Español (nativo), Inglés (básico / técnico)</p>
+    </section>
 
-            <section>
-                <h3 class="section-title">Formación Académica</h3>
-                
-                <div class="education-item">
-                    <div class="edu-school">Ingeniería de Software</div>
-                    <div class="edu-degree">Universidad Digital del Estado de Hidalgo</div>
-                    <div class="edu-date">Finalizado</div>
-                </div>
-            </section>
-        </main>
-    </div>
+</main>
 
 </body>
 </html>

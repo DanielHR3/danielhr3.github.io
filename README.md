@@ -22,10 +22,10 @@ Portfolio personal diseñado para presentar mi trabajo, habilidades y trayectori
 
 | Sección | Contenido |
 |---|---|
-| **Hero** | Foto, nombre, badge de disponibilidad y CTAs |
-| **Proyectos** | Cards con capturas reales, stack y enlace a la demo |
-| **Stack** | Tecnologías agrupadas por área, con el uso que les doy |
-| **Experiencia** | Timeline de roles, formación y cursos |
+| **Hero** | Pantalla completa con nombre en tipografía condensada, foto y disponibilidad |
+| **Proyectos** | Una pantalla por proyecto con captura grande y barra de pestañas fija; en móvil, tarjetas deslizables |
+| **Stack** | Tecnologías agrupadas por área, con el uso que les doy; en móvil, tarjetas deslizables |
+| **Experiencia** | Roles, formación y cursos; en móvil, tarjetas deslizables |
 | **Contacto** | Correo, LinkedIn, GitHub y CV en español e inglés |
 
 ## 🛠️ Tecnologías
@@ -52,7 +52,7 @@ danielhr3.github.io/
 ├── assets/
 │   ├── profile.jpg     # Foto de perfil (+ profile.webp)
 │   ├── previews/       # Capturas de los proyectos (.webp)
-│   ├── CV-DanielHernandezRubio.pdf
+│   ├── CV-DanielHernandezRubio.pdf / CV-DanielHernandezRubio-EN.pdf
 │   └── icons/          # SVG de tecnologías
 └── README.md
 ```

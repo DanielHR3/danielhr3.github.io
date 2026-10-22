@@ -13,6 +13,7 @@
   <meta property="og:description" content="Productos web, móviles y de escritorio offline-first con TypeScript, Go y PostgreSQL. Proyectos en producción y stack explicado por uso." />
   <meta property="og:image" content="https://danielhr3.github.io/assets/profile.jpg" />
   <meta name="twitter:card" content="summary" />
+  <meta name="theme-color" content="#000000">
   <script>document.documentElement.classList.add('js')</script>
   <script type="application/ld+json">
   {
@@ -30,859 +31,918 @@
   }
   </script>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0a0a0a;
-      --bg-secondary: #111111;
-      --bg-card: #161616;
-      --border: rgba(255,255,255,0.08);
-      --border-hover: rgba(107,142,35,0.5);
-      --accent: #6B8E23;
-      --accent-light: #9bc53d;
-      --accent-muted: rgba(107,142,35,0.15);
-      --warm: #A67B5B;
-      --violet: #a78bfa;
-      --text-primary: #f4f4f4;
-      --text-secondary: #a3a3a3;
-      --text-muted: #7d7d7d;
-      --radius: 12px;
-      --shadow-card: 0 4px 40px rgba(0,0,0,0.4);
-      --glow: 0 0 30px rgba(107,142,35,0.12);
+      --bg: #000000;
+      --ink: #f4f4f4;
+      --ink-2: #b9b9b9;
+      --ink-3: #7d7d7d;
+      --olive: #6B8E23;
+      --lime: #c9ef4a;
+      --glow-core: rgba(128, 160, 42, 0.78);
+      --glow-mid: rgba(72, 94, 20, 0.5);
+      --line: rgba(255,255,255,0.10);
+      --tab-h: 3.5rem;
+      --display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+      --body: 'Barlow', system-ui, sans-serif;
     }
 
-    html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
     body {
       background: var(--bg);
-      color: var(--text-primary);
-      font-family: 'Inter', system-ui, sans-serif;
-      line-height: 1.6;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 1.0625rem;
+      line-height: 1.55;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    h1,h2,h3,h4 { font-family: 'Space Grotesk', system-ui, sans-serif; }
-
-    ::selection { background: var(--accent); color: #fff; }
-
-    a:focus-visible, button:focus-visible {
-      outline: 2px solid var(--accent-light);
-      outline-offset: 3px;
-      border-radius: 4px;
+    h1, h2, h3, .display {
+      font-family: var(--display);
+      text-transform: uppercase;
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: 0.005em;
     }
 
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
+    a { color: inherit; }
+    ::selection { background: var(--lime); color: #000; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #000; }
     ::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-    /* ─── GRID BG ─── */
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
+    /* ─── Fondos: resplandor y polvo ─── */
+    .glow {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    .glow::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      z-index: -2;
       pointer-events: none;
+      background:
+        radial-gradient(ellipse 60% 68% at var(--gx, 70%) var(--gy, 45%), var(--glow-core) 0%, var(--glow-mid) 30%, rgba(0,0,0,0) 64%);
+    }
+    .glow::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.9;
       background-image:
-        linear-gradient(rgba(107,142,35,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(107,142,35,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
+        radial-gradient(1.5px 1.5px at 12% 20%, rgba(201,239,74,0.9) 50%, transparent 51%),
+        radial-gradient(1px 1px at 33% 72%, rgba(255,255,255,0.7) 50%, transparent 51%),
+        radial-gradient(2px 2px at 48% 36%, rgba(201,239,74,0.55) 50%, transparent 51%),
+        radial-gradient(1px 1px at 61% 88%, rgba(255,255,255,0.6) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 74% 14%, rgba(201,239,74,0.7) 50%, transparent 51%),
+        radial-gradient(1px 1px at 86% 58%, rgba(255,255,255,0.55) 50%, transparent 51%),
+        radial-gradient(2px 2px at 92% 30%, rgba(201,239,74,0.45) 50%, transparent 51%),
+        radial-gradient(1px 1px at 22% 50%, rgba(255,255,255,0.5) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 40% 8%, rgba(201,239,74,0.5) 50%, transparent 51%),
+        radial-gradient(1px 1px at 8% 82%, rgba(255,255,255,0.6) 50%, transparent 51%),
+        radial-gradient(1.5px 1.5px at 55% 60%, rgba(201,239,74,0.6) 50%, transparent 51%),
+        radial-gradient(1px 1px at 68% 42%, rgba(255,255,255,0.5) 50%, transparent 51%);
+      background-size: 520px 520px;
+      animation: dust 48s linear infinite;
+    }
+    @keyframes dust {
+      from { background-position: 0 0; }
+      to   { background-position: 0 -520px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .glow::after { animation: none; } }
+
+    /* ─── Chip (etiqueta) ─── */
+    .chip {
+      display: inline-block;
+      font-family: var(--display);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      padding: 0.45em 0.7em 0.38em;
+      background: var(--lime);
+      color: #000;
     }
 
-    /* ─── NAV ─── */
-    nav {
+    /* ─── Nav ─── */
+    .top {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 1rem 2rem;
-      background: rgba(10,10,10,0.8);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0));
+      pointer-events: none;
     }
-    .nav-brand {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.1rem;
-      background: linear-gradient(135deg, #9bc53d, #A67B5B);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-decoration: none;
-    }
-    .nav-links { display: flex; gap: 1.5rem; list-style: none; }
-    .nav-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-size: 0.82rem;
+    .top > * { pointer-events: auto; }
+    .brand {
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 1.35rem;
       letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-      white-space: nowrap;
-    }
-    .nav-links a:hover { color: var(--accent-light); }
-
-    /* ─── WRAPPER ─── */
-    .wrapper { position: relative; z-index: 1; }
-
-    /* ─── HERO ─── */
-    .hero {
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 8rem 1.5rem 4rem;
-    }
-    .hero-avatar {
-      position: relative;
-      width: 160px; height: 160px;
-      margin-bottom: 2rem;
-    }
-    .hero-avatar::before {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      padding: 4px;
-      background: linear-gradient(135deg, var(--accent), var(--warm));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      border-radius: 50%;
-      animation: rotate-border 10s linear infinite;
-    }
-    @keyframes rotate-border { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-    .hero-avatar-inner {
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 6px solid var(--bg);
-      box-shadow: var(--shadow-card), var(--glow);
-      background: var(--bg-card);
-      position: relative;
-      z-index: 1;
-    }
-    .hero-avatar-inner img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      filter: contrast(1.05) brightness(1.05);
-    }
-
-    .badge-available {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--accent-muted);
-      border: 1px solid rgba(107,142,35,0.3);
-      color: var(--accent-light);
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.85rem;
-      border-radius: 100px;
-      margin-bottom: 1.5rem;
-    }
-    .badge-dot {
-      width: 7px; height: 7px;
-      background: var(--accent-light);
-      border-radius: 50%;
-      animation: pulse-dot 2s infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.7); }
-    }
-
-    .hero-name {
-      font-size: clamp(2.2rem, 6vw, 4rem);
-      font-weight: 700;
-      background: linear-gradient(135deg, #f4f4f4 0%, #a0a0a0 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-    }
-    .hero-role {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      max-width: 620px;
-      margin: 0 auto 1.5rem;
-      line-height: 1.7;
-    }
-    .hero-role span { color: var(--accent-light); font-weight: 500; }
-
-    .hero-facts {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 0.5rem 1.75rem;
-      list-style: none;
-      margin-bottom: 2rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-    .hero-facts strong { color: var(--text-primary); font-weight: 600; }
-
-    .hero-ctas { display: flex; gap: 0.85rem; flex-wrap: wrap; justify-content: center; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.5rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      border-radius: 8px;
       text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: inherit;
+      color: var(--ink);
     }
-    .btn-primary {
-      background: var(--accent);
-      color: #fff;
-    }
-    .btn-primary:hover { background: #7da42a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(107,142,35,0.3); }
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent-light); transform: translateY(-1px); }
-
-    /* ─── SECTIONS ─── */
-    section { padding: 5rem 1.5rem; }
-    .section-alt {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-light);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-    .section-title {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+    .brand span { color: var(--lime); }
+    .top ul { display: flex; gap: 1.25rem; list-style: none; }
+    .top ul a {
+      font-family: var(--display);
       font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.5rem;
-    }
-    .section-sub {
-      color: var(--text-secondary);
-      margin-bottom: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       font-size: 0.95rem;
-      max-width: 640px;
+      color: var(--ink-2);
+      text-decoration: none;
     }
+    .top ul a:hover { color: var(--ink); }
 
-    /* ─── STACK ─── */
-    .stack-grid {
+    /* ─── Hero ─── */
+    .hero {
+      min-height: 100svh;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.25rem;
+      grid-template-rows: auto 1fr auto;
+      --gx: 50%;
+      --gy: 110%;
     }
-    .stack-group {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
+    .hero::before {
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 105%, var(--glow-core) 0%, var(--glow-mid) 30%, rgba(0,0,0,0) 65%),
+        radial-gradient(ellipse 40% 40% at 50% 20%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 60%);
     }
-    .stack-group.is-ai { border-color: rgba(139,92,246,0.25); background: linear-gradient(135deg, #0d0b18 0%, var(--bg-card) 60%); }
-    .stack-group h3 {
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent-light);
-      font-weight: 600;
-      margin-bottom: 1rem;
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, #000 20%, transparent 80%);
     }
-    .stack-group.is-ai h3 { color: var(--violet); }
-    .stack-list { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; }
-    .stack-list li { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.55; }
-    .stack-list strong {
-      display: block;
-      color: var(--text-primary);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    /* ─── HOW I WORK ─── */
-    .method-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 1.5rem;
-      margin-top: 3rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .method-item h3 { font-size: 0.98rem; font-weight: 600; margin-bottom: 0.4rem; }
-    .method-item p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
-    .method-num {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.75rem;
-      color: var(--warm);
-      letter-spacing: 0.1em;
-      margin-bottom: 0.5rem;
-    }
-
-    /* ─── CARDS ─── */
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
-    .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .card-preview {
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      overflow: hidden;
-      border-bottom: 1px solid var(--border);
-      background: #0d0d0d;
-    }
-    .card-preview img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      transition: transform 0.5s ease;
-    }
-    .card:hover .card-preview img { transform: scale(1.04); }
-    .card-body {
-      padding: 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .card:hover {
-      border-color: var(--border-hover);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-card), var(--glow);
-    }
-    .card-badge {
-      align-self: flex-start;
-      display: inline-block;
-      background: var(--accent-muted);
-      color: var(--accent-light);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.25rem 0.6rem;
-      border-radius: 100px;
-      margin-bottom: 1rem;
-      border: 1px solid rgba(107,142,35,0.2);
-    }
-    .card-title {
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.6rem;
-    }
-    .card-desc {
-      color: var(--text-secondary);
-      font-size: 0.87rem;
-      line-height: 1.65;
-      margin-bottom: 1.25rem;
-    }
-    .card-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-bottom: 1.25rem;
-    }
-    .stack-tag {
-      font-size: 0.7rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
-    }
-    .card-links { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: auto; }
-    .card-link {
+    .hero-top { padding: 5rem 1.5rem 0; text-align: center; }
+    .hero-status {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      color: var(--accent-light);
-      font-size: 0.8rem;
-      font-weight: 500;
-      text-decoration: none;
-      transition: gap 0.2s;
-    }
-    .card-link:hover { gap: 0.55rem; }
-    .card-link::after { content: '→'; }
-
-    /* Featured card */
-    .card-featured {
-      grid-column: 1 / -1;
-      flex-direction: row;
-      background: linear-gradient(135deg, #0f150a 0%, var(--bg-card) 60%);
-      border-color: rgba(107,142,35,0.25);
-    }
-    .card-featured .card-preview {
-      width: 48%;
-      flex-shrink: 0;
-      aspect-ratio: auto;
-      border-bottom: none;
-      border-right: 1px solid var(--border);
-      order: 2;
-      border-left: 1px solid var(--border);
-    }
-    .card-featured .card-body { padding: 2rem; }
-    .card-featured .card-title { font-size: 1.4rem; }
-
-    /* ─── EXPERIENCE TIMELINE ─── */
-    .timeline { display: flex; flex-direction: column; gap: 2rem; }
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 3rem;
-      position: relative;
-    }
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      left: 174px;
-      top: 10px;
-      bottom: -2rem;
-      width: 1px;
-      background: var(--border);
-    }
-    .timeline-item:last-child::before { display: none; }
-    .timeline-date {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-align: right;
-      padding-top: 0.1rem;
-      letter-spacing: 0.03em;
-      white-space: nowrap;
-    }
-    .timeline-dot {
-      position: absolute;
-      left: 170px;
-      top: 8px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px rgba(107,142,35,0.5);
-    }
-    .timeline-body { padding-left: 0.5rem; }
-    .timeline-role {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 0.2rem;
-    }
-    .timeline-company {
-      font-size: 0.82rem;
-      color: var(--accent-light);
-      margin-bottom: 0.6rem;
-    }
-    .timeline-desc {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.65;
-      max-width: 720px;
-    }
-    .timeline-note {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
-      font-style: italic;
-    }
-
-    /* ─── LEARNING ─── */
-    .learn-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 0.75rem 2rem;
-      list-style: none;
-      margin-top: 3rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .learn-list li { font-size: 0.85rem; color: var(--text-primary); }
-    .learn-list span { display: block; font-size: 0.75rem; color: var(--text-muted); }
-    .learn-title {
-      grid-column: 1 / -1;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.78rem !important;
-      letter-spacing: 0.14em;
+      gap: 0.5rem;
+      font-family: var(--display);
       text-transform: uppercase;
-      color: var(--accent-light) !important;
-      font-weight: 600;
-      margin-bottom: 0.25rem;
+      letter-spacing: 0.1em;
+      font-size: 0.9rem;
+      color: var(--ink-2);
     }
-
-    /* ─── CONTACT / FOOTER ─── */
-    .footer-section {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
+    .hero-status i {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 12px var(--lime);
+    }
+    .hero-main {
+      display: grid;
+      place-items: end center;
+      padding: 2rem 1.5rem 0;
       text-align: center;
-      padding: 4rem 1.5rem;
     }
-    .footer-title {
-      font-size: 1.8rem;
+    .hero-photo {
+      width: clamp(120px, 18vw, 180px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.15);
+      box-shadow: 0 0 0 10px rgba(0,0,0,0.6), 0 30px 80px rgba(0,0,0,0.8);
+      align-self: center;
+    }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-bottom { padding: 1.5rem 1.5rem 3rem; text-align: center; }
+    .hero h1 {
+      font-size: clamp(3.4rem, 11.5vw, 9.5rem);
+      font-weight: 800;
+      line-height: 0.88;
+      text-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    }
+    .hero h1 em { font-style: normal; display: block; }
+    .hero-role {
+      margin-top: 1rem;
+      font-family: var(--display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+      color: var(--lime);
+    }
+    .hero-scroll {
+      margin-top: 2rem;
+      display: inline-block;
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.8rem;
+      color: var(--ink-3);
+      text-decoration: none;
+    }
+
+    /* ─── Intro ─── */
+    .intro {
+      position: relative;
+      padding: 6rem 1.5rem 5rem;
+      text-align: center;
+      overflow: hidden;
+    }
+    .intro::before, .intro::after {
+      content: "";
+      position: absolute;
+      top: 10%;
+      bottom: 10%;
+      width: 18vw;
+      max-width: 260px;
+      pointer-events: none;
+      background: repeating-linear-gradient(135deg, rgba(201,239,74,0.18) 0 1px, transparent 1px 11px);
+      mask-image: linear-gradient(90deg, #000, transparent);
+      -webkit-mask-image: linear-gradient(90deg, #000, transparent);
+    }
+    .intro::before { left: 0; }
+    .intro::after {
+      right: 0;
+      mask-image: linear-gradient(270deg, #000, transparent);
+      -webkit-mask-image: linear-gradient(270deg, #000, transparent);
+    }
+    .intro h2 {
+      font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+      max-width: 18ch;
+      margin: 0 auto 1.25rem;
+    }
+    .intro p {
+      max-width: 62ch;
+      margin: 0 auto;
+      color: var(--ink-2);
+      font-size: 1.1rem;
+    }
+    .facts {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem 2.5rem;
+      margin: 2.25rem auto 0;
+      color: var(--ink-2);
+      font-size: 1rem;
+    }
+    .facts strong { color: var(--ink); font-weight: 600; }
+    .ctas {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+    .btn {
+      display: inline-block;
+      font-family: var(--display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 1rem;
+      padding: 0.85rem 1.5rem 0.75rem;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--ink);
+      transition: border-color .15s, background .15s, color .15s;
+    }
+    .btn:hover { border-color: var(--ink); }
+    .btn-primary { background: var(--lime); color: #000; border-color: var(--lime); }
+    .btn-primary:hover { background: #d9f56e; border-color: #d9f56e; }
+
+    /* ─── Encabezados de sección ─── */
+    .head {
+      text-align: center;
+      padding: 6rem 1.5rem 3rem;
+    }
+    .head h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); }
+    .head p {
+      max-width: 60ch;
+      margin: 1rem auto 0;
+      color: var(--ink-2);
+    }
+
+    /* ─── Proyectos: una pantalla por proyecto ─── */
+    .showcase { position: relative; }
+    .feature {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      align-items: center;
+      gap: 3rem;
+      padding: 6rem clamp(1.5rem, 6vw, 6rem) calc(var(--tab-h) + 4rem);
+      scroll-margin-top: 0;
+      --gx: 72%;
+      --gy: 50%;
+    }
+    .feature:nth-child(even) { --gx: 28%; }
+    .feature:nth-child(even) .feature-text { order: 2; }
+    .feature-text { max-width: 36rem; }
+    .feature-text h2 {
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      margin: 0.9rem 0 1.1rem;
+    }
+    .feature-text p { color: var(--ink-2); max-width: 52ch; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; margin-top: 1.4rem; list-style: none; }
+    .tags li {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.9rem;
+      color: var(--ink-3);
+    }
+    .tags li::before { content: "/ "; color: var(--olive); }
+    .feature-text .btn { margin-top: 1.75rem; }
+    .feature-media {
+      position: relative;
+      perspective: 1200px;
+    }
+    .feature-media img {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.85), 0 0 0 1px rgba(0,0,0,0.6);
+      transform: rotateY(-6deg) rotateX(2deg);
+      transform-origin: center;
+    }
+    .feature:nth-child(even) .feature-media img { transform: rotateY(6deg) rotateX(2deg); }
+    @media (prefers-reduced-motion: reduce) { .feature-media img { transform: none !important; } }
+
+    /* Barra de pestañas pegajosa */
+    .tabs {
+      position: sticky;
+      bottom: 0;
+      z-index: 50;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      height: var(--tab-h);
+      background: #000;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: calc(-1 * var(--tab-h));
+    }
+    .tabs::before {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; top: -7px;
+      height: 6px;
+      background: repeating-linear-gradient(90deg, var(--lime) 0 2px, transparent 2px 7px);
+      opacity: 0.9;
+    }
+    .tabs button {
+      appearance: none;
+      border: 0;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      background: transparent;
+      color: var(--ink-3);
+      font-family: var(--display);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.95rem;
+      cursor: pointer;
+      padding: 0 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color .15s, background .2s;
+    }
+    .tabs button:last-child { border-right: 0; }
+    .tabs button:hover { color: var(--ink); }
+    .tabs button[aria-current="true"] {
+      color: var(--lime);
+      background: linear-gradient(180deg, rgba(107,142,35,0.35), rgba(107,142,35,0.08));
+    }
+
+    /* ─── Stack ─── */
+    .stack-rail {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 3rem 2.5rem;
+      padding: 0 clamp(1.5rem, 6vw, 6rem) 2rem;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .group h3 {
+      font-size: 1.75rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 1rem;
+    }
+    .group.is-ai h3 { color: var(--lime); border-color: rgba(201,239,74,0.4); }
+    .group ul { list-style: none; display: grid; gap: 0.9rem; }
+    .group li { color: var(--ink-2); font-size: 0.98rem; line-height: 1.5; }
+    .group li strong {
+      display: block;
+      color: var(--ink);
       font-weight: 600;
-      margin-bottom: 0.75rem;
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 1.05rem;
     }
-    .footer-sub { color: var(--text-secondary); margin: 0 auto 2rem; font-size: 0.9rem; max-width: 520px; }
-    .footer-ctas { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
-    .footer-copy { font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.05em; }
 
-    /* ─── REVEAL ON SCROLL (solo si hay JS) ─── */
-    .js [data-reveal] {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    .method {
+      --gx: 50%;
+      --gy: 120%;
+      padding: 5rem clamp(1.5rem, 6vw, 6rem) 6rem;
     }
-    .js [data-reveal].is-visible { opacity: 1; transform: none; }
+    .method h2 { text-align: center; font-size: clamp(2rem, 4.5vw, 3.4rem); margin-bottom: 3rem; }
+    .method-rail {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 2rem;
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .step {
+      border-top: 2px solid var(--olive);
+      padding-top: 1rem;
+    }
+    .step b {
+      display: block;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--lime);
+    }
+    .step h3 { font-size: 1.45rem; margin: 0.5rem 0 0.6rem; }
+    .step p { color: var(--ink-2); font-size: 0.98rem; }
 
+    /* ─── Experiencia ─── */
+    .xp-rail {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: grid;
+      gap: 0;
+    }
+    .job {
+      display: grid;
+      grid-template-columns: 11rem minmax(0, 1fr);
+      gap: 2rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--line);
+    }
+    .job:last-child { border-bottom: 1px solid var(--line); }
+    .job time, .job .when {
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 1rem;
+      color: var(--lime);
+      padding-top: 0.35rem;
+    }
+    .job h3 { font-size: 1.75rem; }
+    .job .org { color: var(--ink); font-weight: 500; margin: 0.25rem 0 0.6rem; }
+    .job p { color: var(--ink-2); font-size: 0.98rem; }
+    .job .note { color: var(--ink-3); font-size: 0.9rem; margin-top: 0.5rem; }
+
+    .learn {
+      max-width: 880px;
+      margin: 3rem auto 0;
+      padding: 0 1.5rem 6rem;
+    }
+    .learn h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+    .learn ul { list-style: none; display: grid; gap: 0.5rem; }
+    .learn li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: var(--ink-2);
+      font-size: 0.98rem;
+      border-bottom: 1px dashed rgba(255,255,255,0.12);
+      padding-bottom: 0.5rem;
+    }
+    .learn li span { color: var(--ink-3); white-space: nowrap; }
+
+    /* ─── Cierre / contacto ─── */
+    .closing {
+      --gx: 50%;
+      --gy: 40%;
+      text-align: center;
+      padding: 7rem 1.5rem 3rem;
+    }
+    .closing .hero-photo { margin: 0 auto 1.5rem; }
+    .closing .chip { margin-bottom: 1rem; }
+    .closing h2 { font-size: clamp(2.6rem, 7vw, 5.4rem); }
+    .closing p { max-width: 50ch; margin: 1rem auto 2rem; color: var(--ink-2); }
+    .closing .ctas { margin-top: 0; }
+    .copy {
+      margin-top: 4rem;
+      font-family: var(--display);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.8rem;
+      color: var(--ink-3);
+    }
+
+    /* ─── Controles solo para móvil (ocultos en escritorio) ─── */
+    .more, .dots { display: none; }
+
+    /* ─── Carga del hero ─── */
+    .js .hero h1, .js .hero-role, .js .hero-photo { opacity: 0; transform: translateY(18px); animation: rise .9s cubic-bezier(.2,.7,.2,1) forwards; }
+    .js .hero-photo { animation-delay: .05s; }
+    .js .hero h1 { animation-delay: .2s; }
+    .js .hero-role { animation-delay: .45s; }
+    @keyframes rise { to { opacity: 1; transform: none; } }
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .js [data-reveal] { opacity: 1; transform: none; transition: none; }
-      .hero-avatar::before, .badge-dot { animation: none; }
-      .card, .card-preview img, .btn { transition: none; }
+      .js .hero h1, .js .hero-role, .js .hero-photo { opacity: 1; transform: none; animation: none; }
     }
 
-    /* ─── RESPONSIVE ─── */
-    @media (max-width: 768px) {
-      nav { padding: 0.85rem 1rem; gap: 0.75rem; }
-      .nav-links { gap: 0.75rem; overflow-x: auto; scrollbar-width: none; }
-      .nav-links::-webkit-scrollbar { display: none; }
-      .nav-links a { font-size: 0.66rem; letter-spacing: 0.02em; }
-      section { padding: 4rem 1.25rem; }
-      .card-featured { flex-direction: column; }
-      .card-featured .card-preview {
-        width: 100%;
-        aspect-ratio: 16 / 10;
-        order: 0;
-        border-left: none;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
+    /* ─── Móvil: tarjetas deslizables ─── */
+    @media (max-width: 820px) {
+      :root { --tab-h: 3rem; }
+      .top { padding: 0.9rem 1rem; }
+      .top ul { gap: 0.9rem; }
+      .top ul a { font-size: 0.85rem; }
+
+      .rail {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        padding: 0 1rem 1.25rem;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
       }
-      .card-featured .card-body { padding: 1.5rem; }
-      .timeline-item { grid-template-columns: 1fr; gap: 0.4rem; }
-      .timeline-item::before, .timeline-dot { display: none; }
-      .timeline-date { text-align: left; }
-      .timeline-body { padding-left: 0; }
+      .rail::-webkit-scrollbar { display: none; }
+      .rail > * { flex: 0 0 86%; scroll-snap-align: center; }
+      .rail { overscroll-behavior-x: contain; scroll-padding: 0 1rem; }
+
+      .dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.45rem;
+        padding: 0 1rem 1.5rem;
+      }
+      .dots button {
+        appearance: none;
+        border: 0;
+        padding: 0;
+        width: 7px;
+        height: 7px;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.28);
+        transition: width .2s, background .2s;
+      }
+      .dots button[aria-current="true"] { width: 22px; background: var(--lime); }
+
+      .more {
+        display: inline-block;
+        align-self: flex-start;
+        appearance: none;
+        border: 0;
+        background: none;
+        padding: 0.35rem 0 0;
+        color: var(--lime);
+        font-family: var(--display);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+      .is-clamped {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+      .btn { text-align: center; }
+      .facts { display: grid; justify-items: start; text-align: left; gap: 0.4rem; }
+
+      /* Proyectos */
+      .showcase { padding-top: 4.5rem; display: flex; flex-direction: column; }
+      .showcase .tabs { order: -1; }
+      .showcase .rail { padding-bottom: 1.5rem; }
+      .feature {
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        background: #0a0a0a;
+        border: 1px solid rgba(255,255,255,0.1);
+        --gx: 50%;
+        --gy: 0%;
+      }
+      .feature::before { opacity: 0.8; }
+      .feature:nth-child(even) .feature-text { order: 0; }
+      .feature-media { order: -1; perspective: none; }
+      .feature-media img { transform: none !important; border: 0; border-bottom: 1px solid rgba(255,255,255,0.1); box-shadow: none; }
+      .feature-text { padding: 1.25rem 1.25rem 1.5rem; max-width: none; display: flex; flex-direction: column; flex: 1; }
+      .feature-text .btn { margin-top: auto; align-self: flex-start; padding-top: 0.85rem; }
+      .feature-text .tags { margin-bottom: 1.25rem; }
+      .feature-text h2 { font-size: 2.4rem; margin: 0.7rem 0 0.7rem; }
+      .feature-text p { font-size: 0.98rem; }
+      .feature-text .btn { margin-top: 1.25rem; }
+
+      .tabs {
+        position: sticky;
+        top: 3.25rem;
+        bottom: auto;
+        margin: 0 0 1rem;
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: none;
+        border-top: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+      .tabs::-webkit-scrollbar { display: none; }
+      .tabs::before { top: auto; bottom: -7px; }
+      .tabs button { flex: 0 0 auto; padding: 0 1rem; }
+
+      /* Stack */
+      .stack-rail { display: flex; max-width: none; }
+      .group {
+        background: #0a0a0a;
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 1.25rem;
+      }
+      .method-rail { display: flex; padding: 0; }
+      .step { border-top: 0; border-left: 2px solid var(--olive); padding: 0 0 0 1rem; }
+
+      /* Experiencia */
+      .xp-rail { display: flex; max-width: none; }
+      .job {
+        display: block;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        background: #0a0a0a;
+        padding: 1.25rem;
+      }
+      .job h3 { font-size: 1.6rem; margin-top: 0.5rem; }
+
+      .head { padding: 4.5rem 1rem 2rem; }
+      .intro { padding: 4.5rem 1.25rem 3.5rem; }
+      .intro::before, .intro::after { width: 28vw; }
+      .learn { padding-bottom: 4rem; }
+    }
+
+    @media (max-width: 420px) {
+      .top ul { gap: 0.7rem; }
+      .top ul a { font-size: 0.78rem; }
+      .rail > * { flex-basis: 90%; }
     }
   </style>
 </head>
 <body>
 
-<!-- Grid background -->
-<div class="grid-bg"></div>
-
-<!-- NAV -->
-<nav>
-  <a href="#home" class="nav-brand" aria-label="Inicio">DHR.</a>
-  <ul class="nav-links">
-    <li><a href="#projects">Proyectos</a></li>
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="#experience">Experiencia</a></li>
-    <li><a href="#contact">Contacto</a></li>
-  </ul>
-</nav>
-
-<div class="wrapper">
+<header class="top">
+  <a href="#home" class="brand" aria-label="Inicio">DHR<span>.</span></a>
+  <nav aria-label="Secciones">
+    <ul>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a href="#experience">Experiencia</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
 
 <!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-avatar">
-    <div class="hero-avatar-inner">
+<section class="hero glow" id="home">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-top">
+    <span class="hero-status"><i></i>Disponible para proyectos</span>
+  </div>
+  <div class="hero-main">
+    <div class="hero-photo">
       <picture>
         <source srcset="assets/profile.webp" type="image/webp">
-        <img src="assets/profile.jpg" alt="Daniel Hernández Rubio" width="160" height="160">
+        <img src="assets/profile.jpg" alt="Daniel Hernández Rubio" width="180" height="180">
       </picture>
     </div>
   </div>
-
-  <div class="badge-available">
-    <div class="badge-dot"></div>
-    Disponible para proyectos
+  <div class="hero-bottom">
+    <h1>Daniel <em>Hernández Rubio</em></h1>
+    <p class="hero-role">Ingeniero de Software Fullstack</p>
+    <a href="#intro" class="hero-scroll">Desliza ↓</a>
   </div>
+</section>
 
-  <h1 class="hero-name">Daniel Hernández Rubio</h1>
-  <p class="hero-role">
-    <span>Ingeniero de Software Fullstack.</span>
-    Construyo productos web, móviles y de escritorio que siguen funcionando sin conexión,
-    con TypeScript de punta a punta y desarrollo asistido por agentes de IA.
-  </p>
-
-  <ul class="hero-facts">
+<!-- INTRO -->
+<section class="intro" id="intro">
+  <h2>Productos que siguen funcionando sin conexión</h2>
+  <p>Construyo productos web, móviles y de escritorio con TypeScript de punta a punta y desarrollo asistido por agentes de IA. Lo que ves abajo está desplegado y se puede probar.</p>
+  <ul class="facts">
     <li><strong>Next.js · NestJS · Angular</strong> en web</li>
     <li><strong>Go · Python</strong> en escritorio y herramientas</li>
     <li><strong>PostgreSQL / PostGIS</strong> en datos</li>
   </ul>
-
-  <div class="hero-ctas">
+  <div class="ctas">
     <a href="#projects" class="btn btn-primary">Ver proyectos</a>
-    <a href="cv.html" class="btn btn-secondary">CV en español</a>
-    <a href="cv-en.html" class="btn btn-secondary">CV in English</a>
-    <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+    <a href="cv.html" class="btn">CV en español</a>
+    <a href="cv-en.html" class="btn">CV in English</a>
+    <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/" target="_blank" rel="noopener" class="btn">LinkedIn</a>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="section-alt">
-  <div class="section-inner">
-    <p class="section-label" data-reveal>Portfolio</p>
-    <h2 class="section-title" data-reveal>Proyectos</h2>
-    <p class="section-sub" data-reveal>Productos propios y trabajo para clientes. Los que tienen demo están desplegados y se pueden probar.</p>
+<!-- PROYECTOS -->
+<section class="showcase" id="projects" aria-label="Proyectos">
+  <div class="rail" id="projects-rail">
 
-    <div class="card-grid">
+    <article class="feature glow" id="p-panuelo" data-tab="Pañuelo">
+      <div class="feature-text">
+        <span class="chip">En producción · PWA offline-first</span>
+        <h2>Pañuelo sin efecto</h2>
+        <p>Arbitraje y gestión de ligas de flag football. El árbitro anota desde el celular aunque no haya señal en el campo: las jugadas se guardan en IndexedDB y se sincronizan al volver la conexión. El marcador no se edita, se reconstruye a partir de eventos inmutables, así que cada partido queda auditable. Incluye panel para dueños de liga y modo de arbitraje sin cuenta.</p>
+        <ul class="tags">
+          <li>Next.js</li><li>NestJS</li><li>Prisma</li><li>PostgreSQL</li><li>TanStack Query</li><li>shadcn/ui</li><li>Docker</li><li>GitHub Actions</li>
+        </ul>
+        <a href="https://panuelo-sin-efecto.vercel.app" target="_blank" rel="noopener" class="btn btn-primary">Ver demo</a>
+      </div>
+      <div class="feature-media">
+        <img src="assets/previews/panuelo.webp" alt="Pantalla de inicio de Pañuelo sin efecto" width="960" height="600">
+      </div>
+    </article>
 
-      <!-- Pañuelo sin efecto — Featured -->
-      <article class="card card-featured" data-reveal>
-        <div class="card-preview">
-          <img src="assets/previews/panuelo.webp" alt="Pantalla de inicio de Pañuelo sin efecto" width="960" height="600">
-        </div>
-        <div class="card-body">
-          <span class="card-badge">En producción · PWA offline-first</span>
-          <h3 class="card-title">Pañuelo sin efecto</h3>
-          <p class="card-desc">Arbitraje y gestión de ligas de flag football. El árbitro anota desde el celular aunque no haya señal en el campo: las jugadas se guardan en IndexedDB y se sincronizan al volver la conexión. El marcador no se edita, se reconstruye a partir de eventos inmutables (event sourcing), así que cada partido queda auditable. Incluye panel para dueños de liga y modo de arbitraje sin cuenta.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Next.js (App Router)</span>
-            <span class="stack-tag">NestJS</span>
-            <span class="stack-tag">Prisma</span>
-            <span class="stack-tag">PostgreSQL</span>
-            <span class="stack-tag">TanStack Query</span>
-            <span class="stack-tag">shadcn/ui</span>
-            <span class="stack-tag">Docker</span>
-            <span class="stack-tag">GitHub Actions</span>
-          </div>
-          <div class="card-links">
-            <a href="https://panuelo-sin-efecto.vercel.app" target="_blank" rel="noopener" class="card-link">Ver demo</a>
-          </div>
-        </div>
-      </article>
+    <article class="feature glow" id="p-sheepmaster" data-tab="SheepMaster">
+      <div class="feature-text">
+        <span class="chip">En producción · Agrotech</span>
+        <h2>SheepMaster</h2>
+        <p>Gestión de hato ovino: pesajes, ganancia diaria de peso, reproducción, tratamientos y genealogía. App de escritorio en Go que trabaja contra SQLite local y encola los cambios para sincronizarlos a la nube cuando hay internet; la misma interfaz funciona como PWA en el corral. Configurable por rancho.</p>
+        <ul class="tags">
+          <li>Go</li><li>Wails v2</li><li>React + TypeScript</li><li>SQLite</li><li>Supabase</li><li>Cloud Run</li>
+        </ul>
+        <a href="https://danielhr3.github.io/Master_sheep/" target="_blank" rel="noopener" class="btn btn-primary">Ver sitio</a>
+      </div>
+      <div class="feature-media">
+        <img src="assets/previews/sheepmaster.webp" alt="Sitio de SheepMaster" width="960" height="600" loading="lazy">
+      </div>
+    </article>
 
-      <!-- SheepMaster -->
-      <article class="card" data-reveal>
-        <div class="card-preview">
-          <img src="assets/previews/sheepmaster.webp" alt="Sitio de SheepMaster" width="960" height="600" loading="lazy">
-        </div>
-        <div class="card-body">
-          <span class="card-badge">En producción · Agrotech</span>
-          <h3 class="card-title">SheepMaster</h3>
-          <p class="card-desc">Gestión de hato ovino: pesajes, ganancia diaria de peso, reproducción, tratamientos y genealogía. App de escritorio en Go que trabaja contra SQLite local y encola los cambios para sincronizarlos a la nube cuando hay internet; la misma interfaz funciona como PWA en el corral. Configurable por rancho.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Go</span>
-            <span class="stack-tag">Wails v2</span>
-            <span class="stack-tag">React + TypeScript</span>
-            <span class="stack-tag">SQLite</span>
-            <span class="stack-tag">Supabase</span>
-            <span class="stack-tag">Cloud Run</span>
-          </div>
-          <div class="card-links">
-            <a href="https://danielhr3.github.io/Master_sheep/" target="_blank" rel="noopener" class="card-link">Ver sitio</a>
-          </div>
-        </div>
-      </article>
+    <article class="feature glow" id="p-vetsys" data-tab="VetSys Pro">
+      <div class="feature-text">
+        <span class="chip">SaaS multi-tenant</span>
+        <h2>VetSys Pro</h2>
+        <p>Sistema para clínicas veterinarias: expedientes, citas, inventario y ventas. Nació como app de escritorio en Python y lo migré a SaaS: cada clínica queda aislada por tenant, la API valida la suscripción en cada petición y el alta de clínicas y licencias está automatizada.</p>
+        <ul class="tags">
+          <li>Next.js</li><li>FastAPI</li><li>PostgreSQL</li><li>JWT</li><li>Cloud Run</li><li>Vercel</li>
+        </ul>
+        <a href="https://vetsys-ashen.vercel.app" target="_blank" rel="noopener" class="btn btn-primary">Ver app</a>
+      </div>
+      <div class="feature-media">
+        <img src="assets/previews/vetsys.webp" alt="Pantalla de acceso de VetSys Pro" width="960" height="600" loading="lazy">
+      </div>
+    </article>
 
-      <!-- VetSys -->
-      <article class="card" data-reveal>
-        <div class="card-preview">
-          <img src="assets/previews/vetsys.webp" alt="Pantalla de acceso de VetSys Pro" width="960" height="600" loading="lazy">
-        </div>
-        <div class="card-body">
-          <span class="card-badge">SaaS multi-tenant</span>
-          <h3 class="card-title">VetSys Pro</h3>
-          <p class="card-desc">Sistema para clínicas veterinarias: expedientes, citas, inventario y ventas. Nació como app de escritorio en Python y lo migré a SaaS: cada clínica queda aislada por tenant, la API valida la suscripción en cada petición y el alta de clínicas y licencias está automatizada.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Next.js</span>
-            <span class="stack-tag">FastAPI</span>
-            <span class="stack-tag">PostgreSQL</span>
-            <span class="stack-tag">JWT</span>
-            <span class="stack-tag">Cloud Run</span>
-            <span class="stack-tag">Vercel</span>
-          </div>
-          <div class="card-links">
-            <a href="https://vetsys-ashen.vercel.app" target="_blank" rel="noopener" class="card-link">Ver app</a>
-          </div>
-        </div>
-      </article>
+    <article class="feature glow" id="p-ortokids" data-tab="OrtoKids">
+      <div class="feature-text">
+        <span class="chip">Cliente · En producción</span>
+        <h2>OrtoKids</h2>
+        <p>Sitio para un consultorio dental con formulario de citas. Componentes reutilizables, validación del formulario aislada en un hook propio, tokens de color derivados del logotipo y Firebase Analytics.</p>
+        <ul class="tags">
+          <li>React 19</li><li>TypeScript</li><li>Vite</li><li>Firebase Hosting</li>
+        </ul>
+        <a href="https://ortokids-adcb8.web.app" target="_blank" rel="noopener" class="btn btn-primary">Ver sitio</a>
+      </div>
+      <div class="feature-media">
+        <img src="assets/previews/ortokids.webp" alt="Sitio del consultorio dental OrtoKids" width="960" height="600" loading="lazy">
+      </div>
+    </article>
 
-      <!-- OrtoKids -->
-      <article class="card" data-reveal>
-        <div class="card-preview">
-          <img src="assets/previews/ortokids.webp" alt="Sitio del consultorio dental OrtoKids" width="960" height="600" loading="lazy">
-        </div>
-        <div class="card-body">
-          <span class="card-badge">Cliente · En producción</span>
-          <h3 class="card-title">OrtoKids</h3>
-          <p class="card-desc">Sitio para un consultorio dental con formulario de citas. Componentes reutilizables, validación del formulario aislada en un hook propio, tokens de color derivados del logotipo y Firebase Analytics.</p>
-          <div class="card-stack">
-            <span class="stack-tag">React 19</span>
-            <span class="stack-tag">TypeScript</span>
-            <span class="stack-tag">Vite</span>
-            <span class="stack-tag">Firebase Hosting</span>
-          </div>
-          <div class="card-links">
-            <a href="https://ortokids-adcb8.web.app" target="_blank" rel="noopener" class="card-link">Ver sitio</a>
-          </div>
-        </div>
-      </article>
+    <article class="feature glow" id="p-uchiich" data-tab="U Chiich">
+      <div class="feature-text">
+        <span class="chip">Sitio de negocio</span>
+        <h2>U Chiich</h2>
+        <p>Sitio para un negocio de comida yucateca tradicional: menú, historia de la marca, ubicación y pedido directo por WhatsApp.</p>
+        <ul class="tags">
+          <li>Angular</li><li>TypeScript</li><li>SCSS</li>
+        </ul>
+        <a href="https://danielhr3.github.io/UCHIICH/" target="_blank" rel="noopener" class="btn btn-primary">Ver sitio</a>
+      </div>
+      <div class="feature-media">
+        <img src="assets/previews/uchiich.webp" alt="Sitio del restaurante U CHIICH" width="960" height="600" loading="lazy">
+      </div>
+    </article>
 
-      <!-- U CHIICH -->
-      <article class="card" data-reveal>
-        <div class="card-preview">
-          <img src="assets/previews/uchiich.webp" alt="Sitio del restaurante U CHIICH" width="960" height="600" loading="lazy">
-        </div>
-        <div class="card-body">
-          <span class="card-badge">Sitio de negocio</span>
-          <h3 class="card-title">U CHIICH — Comida yucateca</h3>
-          <p class="card-desc">Sitio para un negocio de comida tradicional: menú, historia de la marca, ubicación y pedido directo por WhatsApp.</p>
-          <div class="card-stack">
-            <span class="stack-tag">Angular</span>
-            <span class="stack-tag">TypeScript</span>
-            <span class="stack-tag">SCSS</span>
-          </div>
-          <div class="card-links">
-            <a href="https://danielhr3.github.io/UCHIICH/" target="_blank" rel="noopener" class="card-link">Ver sitio</a>
-          </div>
-        </div>
-      </article>
+    <article class="feature glow" id="p-aura" data-tab="Aura">
+      <div class="feature-text">
+        <span class="chip">Landing · Ejercicio de diseño</span>
+        <h2>Aura</h2>
+        <p>Landing de moda con layout editorial: hero animado, lookbook, bento grid de categorías y grid de productos con quick add.</p>
+        <ul class="tags">
+          <li>React 19</li><li>Tailwind CSS 4</li><li>Framer Motion</li><li>Vite</li>
+        </ul>
+      </div>
+      <div class="feature-media">
+        <img src="assets/previews/aura.webp" alt="Aura, landing page de moda" width="640" height="640" loading="lazy">
+      </div>
+    </article>
 
-      <!-- Aura -->
-      <article class="card" data-reveal>
-        <div class="card-preview">
-          <img src="assets/previews/aura.webp" alt="Aura, landing page de moda" width="640" height="640" loading="lazy">
-        </div>
-        <div class="card-body">
-          <span class="card-badge">Landing · Ejercicio de diseño</span>
-          <h3 class="card-title">Aura</h3>
-          <p class="card-desc">Landing de moda con layout editorial: hero animado, lookbook, bento grid de categorías y grid de productos con quick add.</p>
-          <div class="card-stack">
-            <span class="stack-tag">React 19</span>
-            <span class="stack-tag">Tailwind CSS 4</span>
-            <span class="stack-tag">Framer Motion</span>
-            <span class="stack-tag">Vite</span>
-          </div>
-        </div>
-      </article>
-
-
-    </div>
   </div>
+
+  <nav class="tabs" id="projects-tabs" aria-label="Ir a proyecto"></nav>
 </section>
 
 <!-- STACK -->
 <section id="stack">
-  <div class="section-inner">
-    <p class="section-label" data-reveal>Tecnologías</p>
-    <h2 class="section-title" data-reveal>Stack, y para qué lo uso</h2>
-    <p class="section-sub" data-reveal>Lo que uso en mis productos y en mi trabajo actual en sector público. Los sistemas institucionales son confidenciales, así que aquí describo la tecnología y el tipo de problema, no los proyectos.</p>
+  <div class="head">
+    <h2>Stack, y para qué lo uso</h2>
+    <p>Lo que uso en mis productos y en mi trabajo actual en sector público. Los sistemas institucionales son confidenciales, así que aquí describo la tecnología y el tipo de problema, no los proyectos.</p>
+  </div>
 
-    <div class="stack-grid">
-
-      <div class="stack-group" data-reveal>
-        <h3>Frontend</h3>
-        <ul class="stack-list">
-          <li><strong>Next.js · React 19</strong>Portales administrativos, PWAs y sitios públicos con App Router, TanStack Query y shadcn/ui. Sitios multilingües con next-intl.</li>
-          <li><strong>Angular</strong>Aplicaciones empresariales para sector salud, y auditoría y plan de modernización de sistemas heredados.</li>
-          <li><strong>TypeScript estricto</strong>En todo el stack web, con el cliente de API generado desde el contrato OpenAPI.</li>
-          <li><strong>Tailwind CSS · design tokens</strong>Un solo archivo de tokens que alimenta web y React Native.</li>
-        </ul>
-      </div>
-
-      <div class="stack-group" data-reveal>
-        <h3>Backend</h3>
-        <ul class="stack-list">
-          <li><strong>NestJS</strong>APIs REST documentadas con Swagger, validación con DTOs, JWT en cookie httpOnly y tareas programadas.</li>
-          <li><strong>Python · FastAPI</strong>APIs SaaS multi-tenant, herramientas de línea de comandos y procesadores que validan y transforman documentos, con pruebas en pytest.</li>
-          <li><strong>Go</strong>App de escritorio con Wails y motor de sincronización offline con cola de salida y reintentos.</li>
-          <li><strong>Prisma · TypeORM · SQLAlchemy</strong>Modelado y migraciones según el lenguaje del servicio.</li>
-        </ul>
-      </div>
-
-      <div class="stack-group" data-reveal>
-        <h3>Datos</h3>
-        <ul class="stack-list">
-          <li><strong>PostgreSQL · PostGIS</strong>Base principal. Consultas geoespaciales para geocercas: validar que un registro se hizo dentro de un polígono.</li>
-          <li><strong>SQLite · IndexedDB</strong>Almacenamiento local en apps offline-first de escritorio y navegador.</li>
-          <li><strong>Supabase · Neon · MySQL</strong>Postgres administrado para productos propios; MySQL en sistemas existentes.</li>
-          <li><strong>SQL</strong>Reportes de uso sobre bases en producción y migraciones entre motores.</li>
-        </ul>
-      </div>
-
-      <div class="stack-group" data-reveal>
-        <h3>Móvil, escritorio y mapas</h3>
-        <ul class="stack-list">
-          <li><strong>Expo · React Native</strong>Apps con cámara, GPS, mapas y notificaciones push.</li>
-          <li><strong>PWA</strong>Instalables y operables sin señal, con sincronización al reconectar.</li>
-          <li><strong>Wails</strong>Escritorio nativo con interfaz en React.</li>
-          <li><strong>Leaflet · OpenLayers · Mapbox</strong>Visualización de capas y búsqueda por cercanía.</li>
-        </ul>
-      </div>
-
-      <div class="stack-group" data-reveal>
-        <h3>Cloud y DevOps</h3>
-        <ul class="stack-list">
-          <li><strong>AWS</strong>SPA en CloudFront sobre S3 privado, API en EC2, RDS PostgreSQL y correo con SES, con grupos de seguridad cerrados y almacenamiento cifrado.</li>
-          <li><strong>Google Cloud Run · Firebase</strong>Contenedores que escalan a cero, hosting estático y notificaciones push.</li>
-          <li><strong>Docker · GitHub Actions</strong>Entornos locales reproducibles y CI/CD con despliegue automático.</li>
-          <li><strong>S3 · MinIO</strong>Archivos mediante URLs prefirmadas, sin pasar por la API.</li>
-        </ul>
-      </div>
-
-      <div class="stack-group is-ai" data-reveal>
-        <h3>IA y agentes</h3>
-        <ul class="stack-list">
-          <li><strong>Claude Code · Gemini CLI</strong>Desarrollo dirigido por agentes: un archivo de contexto por repositorio, historias de usuario con criterios de aceptación y revisión humana de cada diff.</li>
-          <li><strong>APIs de OpenAI, Gemini y Claude</strong>Asistentes integrados en producto con proveedor intercambiable; Whisper para transcribir voz.</li>
-          <li><strong>RAG · LangChain · MCP</strong>Consulta sobre documentos propios y herramientas expuestas a agentes.</li>
-          <li><strong>n8n</strong>Automatizaciones y webhooks entre servicios.</li>
-        </ul>
-      </div>
-
+  <div class="stack-rail rail" data-dots aria-label="Áreas del stack">
+    <div class="group">
+      <h3>Frontend</h3>
+      <ul>
+        <li><strong>Next.js · React 19</strong>Portales administrativos, PWAs y sitios públicos con App Router, TanStack Query y shadcn/ui. Sitios multilingües con next-intl.</li>
+        <li><strong>Angular</strong>Aplicaciones empresariales para sector salud, y auditoría y plan de modernización de sistemas heredados.</li>
+        <li><strong>TypeScript estricto</strong>En todo el stack web, con el cliente de API generado desde el contrato OpenAPI.</li>
+        <li><strong>Tailwind CSS · design tokens</strong>Un solo archivo de tokens que alimenta web y React Native.</li>
+      </ul>
     </div>
+    <div class="group">
+      <h3>Backend</h3>
+      <ul>
+        <li><strong>NestJS</strong>APIs REST documentadas con Swagger, validación con DTOs, JWT en cookie httpOnly y tareas programadas.</li>
+        <li><strong>Python · FastAPI</strong>APIs SaaS multi-tenant, herramientas de línea de comandos y procesadores que validan y transforman documentos, con pruebas en pytest.</li>
+        <li><strong>Go</strong>App de escritorio con Wails y motor de sincronización offline con cola de salida y reintentos.</li>
+        <li><strong>Prisma · TypeORM · SQLAlchemy</strong>Modelado y migraciones según el lenguaje del servicio.</li>
+      </ul>
+    </div>
+    <div class="group">
+      <h3>Datos</h3>
+      <ul>
+        <li><strong>PostgreSQL · PostGIS</strong>Base principal. Consultas geoespaciales para geocercas: validar que un registro se hizo dentro de un polígono.</li>
+        <li><strong>SQLite · IndexedDB</strong>Almacenamiento local en apps offline-first de escritorio y navegador.</li>
+        <li><strong>Supabase · Neon · MySQL</strong>Postgres administrado para productos propios; MySQL en sistemas existentes.</li>
+        <li><strong>SQL</strong>Reportes de uso sobre bases en producción y migraciones entre motores.</li>
+      </ul>
+    </div>
+    <div class="group">
+      <h3>Móvil, escritorio y mapas</h3>
+      <ul>
+        <li><strong>Expo · React Native</strong>Apps con cámara, GPS, mapas y notificaciones push.</li>
+        <li><strong>PWA</strong>Instalables y operables sin señal, con sincronización al reconectar.</li>
+        <li><strong>Wails</strong>Escritorio nativo con interfaz en React.</li>
+        <li><strong>Leaflet · OpenLayers · Mapbox</strong>Visualización de capas y búsqueda por cercanía.</li>
+      </ul>
+    </div>
+    <div class="group">
+      <h3>Cloud y DevOps</h3>
+      <ul>
+        <li><strong>AWS</strong>SPA en CloudFront sobre S3 privado, API en EC2, RDS PostgreSQL y correo con SES, con grupos de seguridad cerrados y almacenamiento cifrado.</li>
+        <li><strong>Google Cloud Run · Firebase</strong>Contenedores que escalan a cero, hosting estático y notificaciones push.</li>
+        <li><strong>Docker · GitHub Actions</strong>Entornos locales reproducibles y CI/CD con despliegue automático.</li>
+        <li><strong>S3 · MinIO</strong>Archivos mediante URLs prefirmadas, sin pasar por la API.</li>
+      </ul>
+    </div>
+    <div class="group is-ai">
+      <h3>IA y agentes</h3>
+      <ul>
+        <li><strong>Claude Code · Gemini CLI</strong>Desarrollo dirigido por agentes: un archivo de contexto por repositorio, historias de usuario con criterios de aceptación y revisión humana de cada diff.</li>
+        <li><strong>APIs de OpenAI, Gemini y Claude</strong>Asistentes integrados en producto con proveedor intercambiable; Whisper para transcribir voz.</li>
+        <li><strong>RAG · LangChain · MCP</strong>Consulta sobre documentos propios y herramientas expuestas a agentes.</li>
+        <li><strong>n8n</strong>Automatizaciones y webhooks entre servicios.</li>
+      </ul>
+    </div>
+  </div>
 
-    <div class="method-grid">
-      <div class="method-item" data-reveal>
-        <p class="method-num">01</p>
+  <div class="method glow">
+    <h2>Cómo trabajo</h2>
+    <div class="method-rail rail" data-dots aria-label="Método de trabajo">
+      <div class="step">
+        <b>01</b>
         <h3>Primero la historia de usuario</h3>
         <p>No se desarrolla nada sin historia de usuario y criterios de aceptación. Las pruebas se escriben contra esos criterios.</p>
       </div>
-      <div class="method-item" data-reveal>
-        <p class="method-num">02</p>
+      <div class="step">
+        <b>02</b>
         <h3>El humano define, el agente ejecuta</h3>
         <p>Uso agentes de IA para implementar, pero un módulo solo está terminado cuando pasan build, lint y pruebas y una persona revisó el diff.</p>
       </div>
-      <div class="method-item" data-reveal>
-        <p class="method-num">03</p>
+      <div class="step">
+        <b>03</b>
         <h3>Contrato antes que código</h3>
         <p>La API se define en OpenAPI y el frontend consume un cliente generado. Jest, Supertest, Vitest y Playwright cubren el resto.</p>
       </div>
-      <div class="method-item" data-reveal>
-        <p class="method-num">04</p>
+      <div class="step">
+        <b>04</b>
         <h3>Seguridad y documentación</h3>
         <p>Auditoría de dependencias, revisión contra OWASP Top 10, bitácora de desarrollo y decisiones de arquitectura por escrito.</p>
       </div>
@@ -890,69 +950,59 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience" class="section-alt">
-  <div class="section-inner">
-    <p class="section-label" data-reveal>Trayectoria</p>
-    <h2 class="section-title" data-reveal>Experiencia</h2>
-    <p class="section-sub" data-reveal>De soporte técnico a ingeniería de software, con productos propios en paralelo.</p>
+<!-- EXPERIENCIA -->
+<section id="experience">
+  <div class="head">
+    <h2>Experiencia</h2>
+    <p>De soporte técnico a ingeniería de software, con productos propios en paralelo.</p>
+  </div>
 
-    <div class="timeline">
-
-      <div class="timeline-item" data-reveal>
-        <span class="timeline-date">Abr 2026 — Presente</span>
-        <div class="timeline-dot"></div>
-        <div class="timeline-body">
-          <p class="timeline-role">Ingeniero de Software</p>
-          <p class="timeline-company">Gobierno del Estado de Hidalgo</p>
-          <p class="timeline-desc">Desarrollo de software institucional bajo un marco de desarrollo asistido por agentes de IA. APIs con NestJS y PostgreSQL/PostGIS, portales con Next.js, apps móviles con Expo y herramientas internas en Python y FastAPI desplegadas en AWS. Lidero la planeación técnica de proyectos, audito sistemas heredados para su modernización y reviso entregas de proveedores externos.</p>
-          <p class="timeline-note">Los sistemas son confidenciales; el detalle técnico está en la sección de stack.</p>
-        </div>
+  <div class="xp-rail rail" data-dots aria-label="Puestos">
+    <article class="job">
+      <time datetime="2026-04">Abr 2026 — Presente</time>
+      <div>
+        <h3>Ingeniero de Software</h3>
+        <p class="org">Gobierno del Estado de Hidalgo</p>
+        <p>Desarrollo de software institucional bajo un marco de desarrollo asistido por agentes de IA. APIs con NestJS y PostgreSQL/PostGIS, portales con Next.js, apps móviles con Expo y herramientas internas en Python y FastAPI desplegadas en AWS. Lidero la planeación técnica de proyectos, audito sistemas heredados para su modernización y reviso entregas de proveedores externos.</p>
+        <p class="note">Los sistemas son confidenciales; el detalle técnico está en la sección de stack.</p>
       </div>
-
-      <div class="timeline-item" data-reveal>
-        <span class="timeline-date">Sep 2024 — Abr 2026</span>
-        <div class="timeline-dot"></div>
-        <div class="timeline-body">
-          <p class="timeline-role">Desarrollador de Software · Angular y TypeScript</p>
-          <p class="timeline-company">IntegraMed</p>
-          <p class="timeline-desc">Desarrollo y mantenimiento de aplicaciones web para el sector salud. Componentes reutilizables, consumo de APIs REST, diseño responsivo y trabajo en equipo con GitFlow.</p>
-        </div>
+    </article>
+    <article class="job">
+      <time datetime="2024-09">Sep 2024 — Abr 2026</time>
+      <div>
+        <h3>Desarrollador de Software</h3>
+        <p class="org">IntegraMed · Angular y TypeScript</p>
+        <p>Desarrollo y mantenimiento de aplicaciones web para el sector salud. Componentes reutilizables, consumo de APIs REST, diseño responsivo y trabajo en equipo con GitFlow.</p>
       </div>
-
-      <div class="timeline-item" data-reveal>
-        <span class="timeline-date">2023 — Presente</span>
-        <div class="timeline-dot"></div>
-        <div class="timeline-body">
-          <p class="timeline-role">Desarrollador independiente</p>
-          <p class="timeline-company">Productos propios y clientes</p>
-          <p class="timeline-desc">Diseño, construyo y opero productos completos: SheepMaster, VetSys Pro y Pañuelo sin efecto, además de sitios para negocios locales. Me encargo de todo el ciclo, desde el levantamiento de requisitos hasta el despliegue y el soporte.</p>
-        </div>
+    </article>
+    <article class="job">
+      <time datetime="2023">2023 — Presente</time>
+      <div>
+        <h3>Desarrollador independiente</h3>
+        <p class="org">Productos propios y clientes</p>
+        <p>Diseño, construyo y opero productos completos: SheepMaster, VetSys Pro y Pañuelo sin efecto, además de sitios para negocios locales. Me encargo de todo el ciclo, desde el levantamiento de requisitos hasta el despliegue y el soporte.</p>
       </div>
-
-      <div class="timeline-item" data-reveal>
-        <span class="timeline-date">Abr 2022 — Mar 2023</span>
-        <div class="timeline-dot"></div>
-        <div class="timeline-body">
-          <p class="timeline-role">Auxiliar de Informática</p>
-          <p class="timeline-company">Gobierno del Estado de Hidalgo</p>
-          <p class="timeline-desc">Soporte técnico, mantenimiento de bases de datos y capacitación de usuarios.</p>
-        </div>
+    </article>
+    <article class="job">
+      <time datetime="2022-04">Abr 2022 — Mar 2023</time>
+      <div>
+        <h3>Auxiliar de Informática</h3>
+        <p class="org">Gobierno del Estado de Hidalgo</p>
+        <p>Soporte técnico, mantenimiento de bases de datos y capacitación de usuarios.</p>
       </div>
-
-      <div class="timeline-item" data-reveal>
-        <span class="timeline-date">Formación</span>
-        <div class="timeline-dot"></div>
-        <div class="timeline-body">
-          <p class="timeline-role">Ingeniería de Software</p>
-          <p class="timeline-company">Universidad Digital del Estado de Hidalgo (UNIDEH)</p>
-        </div>
+    </article>
+    <article class="job">
+      <span class="when">Formación</span>
+      <div>
+        <h3>Ingeniería de Software</h3>
+        <p class="org">Universidad Digital del Estado de Hidalgo (UNIDEH)</p>
       </div>
+    </article>
+  </div>
 
-    </div>
-
-    <ul class="learn-list" data-reveal>
-      <li class="learn-title">Formación continua</li>
+  <div class="learn">
+    <h3>Formación continua</h3>
+    <ul>
       <li>Ingeniería de prompts: para la vida real<span>DevTalles · 2026</span></li>
       <li>Obsidian: tu segundo cerebro con IA<span>Hola Mundo · 2026</span></li>
       <li>Ultimate Python: de cero a programador experto<span>Udemy · 2026</span></li>
@@ -963,40 +1013,138 @@
   </div>
 </section>
 
-<!-- CONTACT / FOOTER -->
-<footer class="footer-section" id="contact">
-  <h2 class="footer-title" data-reveal>¿Trabajamos juntos?</h2>
-  <p class="footer-sub" data-reveal>
-    Disponible para proyectos freelance, colaboraciones y nuevas oportunidades. Lo más rápido es escribirme por correo.
-  </p>
-  <div class="footer-ctas" data-reveal>
-    <a href="mailto:danielhrubio3@gmail.com" class="btn btn-primary">danielhrubio3@gmail.com</a>
-    <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
-    <a href="https://github.com/DanielHR3" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
-    <a href="cv.html" class="btn btn-secondary">CV (Español)</a>
-    <a href="cv-en.html" class="btn btn-secondary">CV (English)</a>
+<!-- CONTACTO -->
+<footer class="closing glow" id="contact">
+  <div class="hero-photo">
+    <picture>
+      <source srcset="assets/profile.webp" type="image/webp">
+      <img src="assets/profile.jpg" alt="" width="180" height="180" loading="lazy">
+    </picture>
   </div>
-  <p class="footer-copy">© 2026 Daniel Hernández Rubio</p>
+  <span class="chip">Disponible para proyectos</span>
+  <h2>¿Trabajamos juntos?</h2>
+  <p>Freelance, colaboraciones y nuevas oportunidades. Lo más rápido es escribirme por correo.</p>
+  <div class="ctas">
+    <a href="mailto:danielhrubio3@gmail.com" class="btn btn-primary">danielhrubio3@gmail.com</a>
+    <a href="https://www.linkedin.com/in/daniel-hern%C3%A1ndez-rubio/" target="_blank" rel="noopener" class="btn">LinkedIn</a>
+    <a href="https://github.com/DanielHR3" target="_blank" rel="noopener" class="btn">GitHub</a>
+    <a href="cv.html" class="btn">CV (Español)</a>
+    <a href="cv-en.html" class="btn">CV (English)</a>
+  </div>
+  <p class="copy">© 2026 Daniel Hernández Rubio</p>
 </footer>
-
-</div><!-- /wrapper -->
 
 <script>
   (function () {
-    var items = document.querySelectorAll('[data-reveal]');
-    if (!('IntersectionObserver' in window)) {
-      items.forEach(function (el) { el.classList.add('is-visible'); });
-      return;
-    }
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
+    var rail = document.getElementById('projects-rail');
+    var tabs = document.getElementById('projects-tabs');
+    var features = Array.prototype.slice.call(rail.querySelectorAll('.feature'));
+    var mobile = window.matchMedia('(max-width: 820px)');
+    var buttons = [];
+
+    features.forEach(function (f, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = f.getAttribute('data-tab');
+      b.setAttribute('aria-controls', f.id);
+      b.addEventListener('click', function () {
+        if (mobile.matches) {
+          rail.scrollTo({ left: f.offsetLeft - (rail.clientWidth - f.clientWidth) / 2, behavior: 'smooth' });
+        } else {
+          f.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    items.forEach(function (el) { io.observe(el); });
+      tabs.appendChild(b);
+      buttons.push(b);
+    });
+
+    function setActive(i) {
+      buttons.forEach(function (b, j) {
+        if (j === i) {
+          b.setAttribute('aria-current', 'true');
+          if (mobile.matches) b.scrollIntoView({ block: 'nearest', inline: 'center' });
+        } else {
+          b.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    // Escritorio: la sección más visible manda.
+    if ('IntersectionObserver' in window) {
+      var ratios = features.map(function () { return 0; });
+      var io = new IntersectionObserver(function (entries) {
+        if (mobile.matches) return;
+        entries.forEach(function (e) { ratios[features.indexOf(e.target)] = e.intersectionRatio; });
+        var best = 0;
+        ratios.forEach(function (r, i) { if (r > ratios[best]) best = i; });
+        setActive(best);
+      }, { threshold: [0.25, 0.5, 0.75] });
+      features.forEach(function (f) { io.observe(f); });
+    }
+
+    // Móvil: la tarjeta centrada manda.
+    watchRail(rail, features, setActive);
+    setActive(0);
+
+    // Carruseles con puntos de posición (solo visibles en móvil).
+    document.querySelectorAll('.rail[data-dots]').forEach(function (r) {
+      var items = Array.prototype.slice.call(r.children);
+      var dots = document.createElement('div');
+      dots.className = 'dots';
+      dots.setAttribute('role', 'tablist');
+      var ds = items.map(function (it, i) {
+        var d = document.createElement('button');
+        d.type = 'button';
+        d.setAttribute('aria-label', (i + 1) + ' de ' + items.length);
+        d.addEventListener('click', function () {
+          r.scrollTo({ left: it.offsetLeft - (r.clientWidth - it.clientWidth) / 2, behavior: 'smooth' });
+        });
+        dots.appendChild(d);
+        return d;
+      });
+      r.insertAdjacentElement('afterend', dots);
+      var mark = function (i) {
+        ds.forEach(function (d, j) { if (j === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+      };
+      watchRail(r, items, mark);
+      mark(0);
+    });
+
+    // "Leer más" en descripciones largas de proyectos (solo móvil).
+    features.forEach(function (f) {
+      var p = f.querySelector('.feature-text > p');
+      if (!p || p.textContent.length < 230) return;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'more';
+      b.textContent = 'Leer más';
+      b.setAttribute('aria-expanded', 'false');
+      p.classList.add('is-clamped');
+      b.addEventListener('click', function () {
+        var open = p.classList.toggle('is-clamped') === false;
+        b.textContent = open ? 'Leer menos' : 'Leer más';
+        b.setAttribute('aria-expanded', String(open));
+      });
+      p.insertAdjacentElement('afterend', b);
+    });
+
+    function watchRail(r, items, onChange) {
+      var ticking = false;
+      r.addEventListener('scroll', function () {
+        if (!mobile.matches || ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var center = r.scrollLeft + r.clientWidth / 2;
+          var best = 0, dist = Infinity;
+          items.forEach(function (it, i) {
+            var d = Math.abs(it.offsetLeft + it.clientWidth / 2 - center);
+            if (d < dist) { dist = d; best = i; }
+          });
+          onChange(best);
+          ticking = false;
+        });
+      }, { passive: true });
+    }
   })();
 </script>
 </body>
