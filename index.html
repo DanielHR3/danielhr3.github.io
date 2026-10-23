@@ -775,14 +775,14 @@
       <div class="feature-text">
         <span class="chip">En producción · PWA offline-first</span>
         <h2>Pañuelo sin efecto</h2>
-        <p>Arbitraje y gestión de ligas de flag football. El árbitro anota desde el celular aunque no haya señal en el campo: las jugadas se guardan en IndexedDB y se sincronizan al volver la conexión. El marcador no se edita, se reconstruye a partir de eventos inmutables, así que cada partido queda auditable. Incluye panel para dueños de liga y modo de arbitraje sin cuenta.</p>
+        <p>Arbitraje y gestión de ligas de flag football. El árbitro anota desde el celular aunque no haya señal en el campo: las jugadas se guardan en IndexedDB y se sincronizan al volver la conexión. El marcador no se edita, se reconstruye a partir de eventos inmutables, así que cada partido queda auditable, y un resultado finalizado se corrige reabriendo el partido y anulando jugadas, sin borrar nada. Detecta jugadas duplicadas cuando arbitran varios, acota cada dato a su liga y comparte el resultado por WhatsApp. Incluye panel para dueños de liga y modo de arbitraje sin cuenta.</p>
         <ul class="tags">
-          <li>Next.js</li><li>NestJS</li><li>Prisma</li><li>PostgreSQL</li><li>TanStack Query</li><li>shadcn/ui</li><li>Docker</li><li>GitHub Actions</li>
+          <li>Next.js</li><li>NestJS</li><li>Prisma</li><li>PostgreSQL</li><li>Tailwind CSS</li><li>Docker</li><li>GitHub Actions</li>
         </ul>
         <a href="https://panuelo-sin-efecto.vercel.app" target="_blank" rel="noopener" class="btn btn-primary">Ver demo</a>
       </div>
       <div class="feature-media">
-        <img src="assets/previews/panuelo.webp" alt="Pantalla de inicio de Pañuelo sin efecto" width="960" height="600">
+        <img src="assets/previews/panuelo.webp" alt="Resultado de un partido en Pañuelo sin efecto: marcador estilo transmisión sobre el campo" width="960" height="600">
       </div>
     </article>
 
